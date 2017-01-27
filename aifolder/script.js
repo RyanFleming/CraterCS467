@@ -95,7 +95,7 @@ function animation(){
 	var loopTimer = setTimeout(animation, speed);
 };
 
-
+// Add an object to the array at the center of the first black square.
 function addObject(){
 	objectArray.push({x:230, y:25});	
 };
