@@ -40,7 +40,7 @@ function showTiles(){
 	}
 };
 
-// Draws black rectangles onto canvas for a path I chose arbitrarily.
+// Draws black squares onto the canvas for a path I chose arbitrarily.
 function showPath(){
 	
 	context.fillStyle = 'black';
