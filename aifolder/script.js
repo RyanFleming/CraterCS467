@@ -85,7 +85,7 @@ function animation(){
 		// Remove the object from the array if it makes it into the blue square.
 		else if (objectArray[k].x > 1580){
 			objectArray.splice(k, 1);
-			showPath();
+			showPath(); // This is probably unnecessary.
 		}
 		
 		else if (objectArray[k].x < 1581)
