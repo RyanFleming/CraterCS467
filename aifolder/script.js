@@ -71,16 +71,18 @@ function animation(){
 	
 	for (var k = 0; k < objectArray.length; k++){
 		
+		// Draw the white circle.
 		context.fillStyle = 'white';
 		context.beginPath();
 		//x, y of center, radius, start and end angle.
 		context.arc(objectArray[k].x, objectArray[k].y, 25, 0, Math.PI * 2); 
 		context.fill();
 
-		// Arbitrary values for down and across path, based on the canvas size.
+		// Path following for the arbitrarily chosen path.
 		if (objectArray[k].y < 638)
 			objectArray[k].y += increment;
 		
+		// Remove the object from the array if it makes it into the blue square.
 		else if (objectArray[k].x > 1580){
 			objectArray.splice(k, 1);
 			showPath();
