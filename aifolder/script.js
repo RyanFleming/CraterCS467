@@ -261,7 +261,7 @@ function animation(){
 
 function addObject(){
 	var i = Math.floor(Math.random() * spawnPoints.length);	
-	objectArray.push(spawnPoints[i]);	
+	objectArray.push({x: spawnPoints[i].x, y: spawnPoints[i].y});	
 };
 
 
