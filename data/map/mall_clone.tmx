@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="12">
+ <tileset firstgid="1" name="parkingLot" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="../img/map/terrain-Derivation_5.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="30" height="20">
+  <data encoding="csv">
+111,111,111,111,8,8,8,8,8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,8,8,8,8,8,8,8,
+111,31,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,1,1,1,1,1,110,110,31,110,110,110,110,31,110,110,110,110,31,110,110,1,1,1,1,1,1,1,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,1,1,1,1,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,176,176,176,176,8,
+1,1,1,111,1,1,1,31,1,1,1,1,1,1,1,1,1,1,1,1,1,31,1,1,1,176,143,143,143,8,
+1,1,1,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,143,118,8,
+111,111,111,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,118,118,8,
+111,111,111,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,118,118,8,
+1,1,1,111,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,176,143,143,118,8,
+1,1,1,111,1,1,1,31,1,1,1,1,1,1,1,1,1,1,1,1,1,31,1,1,1,176,143,143,143,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,176,176,176,176,8,
+1,1,1,1,1,1,1,17,1,1,1,1,17,1,1,1,110,1,1,1,1,17,1,1,1,1,1,1,1,8,
+111,20,1,1,1,1,1,110,110,110,31,110,110,110,31,110,110,110,110,31,110,110,1,1,1,1,1,1,1,8,
+111,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,20,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,31,20,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8,
+111,111,111,111,8,8,8,8,8,8,8,8,1,1,1,1,1,8,8,8,8,8,8,8,8,8,8,8,8,8
+</data>
+ </layer>
+ <objectgroup name="Entities">
+  <object id="5" name="mainPlayer" x="1" y="288" width="32" height="64">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+    <property name="image" value="gripe_run_right"/>
+   </properties>
+  </object>
+  <object id="7" name="CoinEntity" x="926" y="304" width="32" height="32">
+   <properties>
+    <property name="framewidth" type="int" value="32"/>
+    <property name="image" value="spinning_coin_gold"/>
+   </properties>
+  </object>
+  <object id="9" name="mainPlayer" x="-34" y="288" width="32" height="64">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+    <property name="image" value="gripe_run_right"/>
+   </properties>
+  </object>
+  <object id="10" name="mainPlayer" x="-69" y="288" width="32" height="64">
+   <properties>
+    <property name="framewidth" type="int" value="64"/>
+    <property name="image" value="gripe_run_right"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

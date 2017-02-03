@@ -40,6 +40,11 @@ game.resources = [
         "src": "data/img/map/area01_level_tiles.png"
     },
     {
+        "name": "terrain-Derivation_5",
+        "type": "image",
+        "src": "data/img/map/terrain-Derivation_5.png"
+    },
+    {
         "name": "gripe_run_right",
         "type": "image",
         "src": "data/img/sprite/gripe_run_right.png"
@@ -58,6 +63,11 @@ game.resources = [
         "name": "area01",
         "type": "tmx",
         "src": "data/map/area01.tmx"
+    },
+    {
+        "name": "mall_clone",
+        "type": "tmx",
+        "src": "data/map/mall_clone.tmx"
     },
     {
         "name": "PressStart2P",

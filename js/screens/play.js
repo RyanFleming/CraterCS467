@@ -6,14 +6,17 @@ game.PlayScreen = me.ScreenObject.extend({
         // play the audio track
         me.audio.playTrack("dst-inertexponent");
         // load a level
-        me.levelDirector.loadLevel("area01");
+        me.levelDirector.loadLevel("mall_clone");
 
         // reset the score
-        game.data.score = 0;
+        game.data.score = 20;
 
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
+
+        //spawn enemy
+
     },
 
     /**
