@@ -6,7 +6,9 @@ var game = {
      * an object where to store game global data
      */
     data: {
-        score: 0
+        health: 0,
+        gold: 0,
+        enemyCount: 0
     },
 
     // Run on page load.
@@ -47,6 +49,12 @@ var game = {
         // set the "Play/Ingame" Screen Object
         me.state.set(me.state.PLAY, new game.PlayScreen());
 
+        //set the loss screen
+        me.state.set(me.state.GAME_OVER, new game.LossScreen());
+
+        //set the credits screen
+        me.state.set(me.state.GAME_END, new game.WinScreen());
+
         // set a global fading transition for the screen
         me.state.transition("fade", "#FFFFFF", 250);
 
@@ -54,11 +62,13 @@ var game = {
         me.pool.register("mainPlayer", game.PlayerEntity);
         me.pool.register("CoinEntity", game.CoinEntity);
         me.pool.register("EnemyEntity", game.EnemyEntity);
+        me.pool.register("laser", game.Laser);
 
         // enable the keyboard
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.X, "jump", true);
+
 
         // display the menu title
         me.state.change(me.state.MENU);

@@ -35,6 +35,10 @@ game.PlayerEntity = me.Entity.extend({
      */
     update : function (dt) {
 
+        if (me.input.isKeyPressed("shoot")) {
+            me.game.world.addChild(me.pool.pull("laser", this.pos.x - game.Laser.width, this.pos.y - game.Laser.height))
+        }
+
         if (this.alive) {
             if (this.walkLeft && this.pos.x <= this.startX) {
                 this.walkLeft = false;
@@ -72,7 +76,14 @@ game.PlayerEntity = me.Entity.extend({
         me.audio.play("cling");
 
         // Take away life
-        game.data.score -= 1;
+        game.data.health -= 1;
+        game.data.enemyCount -= 1;
+        if (game.data.enemyCount <= 0) {
+            me.state.change(me.state.GAME_END);
+        }
+        if (game.data.health <= 0) {
+            me.state.change(me.state.GAME_OVER);
+        }
 
           // make sure it cannot be collected "again"
          this.body.setCollisionMask(me.collision.types.NO_OBJECT);
@@ -93,6 +104,7 @@ game.CoinEntity = me.CollectableEntity.extend({
         this._super(me.CollectableEntity, 'init', [x, y , settings]);
 
     },
+
 
     // this function is called by the engine, when
     // an object is touched by something (here collected)
@@ -198,5 +210,63 @@ game.EnemyEntity = me.Entity.extend({
         }
         // Make all other objects solid
         return true;
+    }
+});
+
+game.EnemyManager = me.Container.extend({
+    init : function () {
+        this._super(me.Container, "init", [0, 32,
+            this.COLS * 64 - 32,
+            this.ROWS * 64 - 32
+        ]);
+        this.COLS = 9;
+        this.ROWS = 4;
+        this.vel = 16;
+    },
+
+    createEnemies : function () {
+        for (var i = 0; i < this.COLS; i++) {
+            for (var j = 0; j < this.ROWS; j++) {
+                this.addChild(me.pool.pull("enemy", i * 64, j * 64));
+            }
+        }
+        this.updateChildBounds();
+    },
+
+    onActivateEvent : function () {
+        var _this = this;
+        this.timer = me.timer.setInterval(function () {
+            var bounds = _this.childBounds;
+
+            if ((_this.vel > 0 && (bounds.right + _this.vel) >= me.game.viewport.width) ||
+                (_this.vel < 0 && (bounds.left + _this.vel) <= 0)) {
+                _this.vel *= -1;
+                _this.pos.y += 16;
+                if (_this.vel > 0) {
+                    _this.vel += 5;
+                }
+                else {
+                    _this.vel -= 5;
+                }
+                game.playScreen.checkIfLoss(); // <<<
+            }
+            else {
+                _this.pos.x += _this.vel;
+            }
+        }, 1000);
+    },
+
+    onDeactivateEvent : function () {
+        me.timer.clearInterval(this.timer);
+    },
+
+    removeChildNow : function (child) {
+        this._super(me.Container, "removeChildNow", [child]);
+        this.updateChildBounds();
+    },
+
+    update : function (time) {
+        this._super(me.Container, "update", [time]);
+        this.updateChildBounds();
     }
 });

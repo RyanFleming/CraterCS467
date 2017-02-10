@@ -1,4 +1,4 @@
-game.TitleScreen = me.ScreenObject.extend({
+game.LossScreen = me.ScreenObject.extend({
     /**
      * action to perform on state change
      */
@@ -28,7 +28,7 @@ game.TitleScreen = me.ScreenObject.extend({
                 // a tween to animate the arrow
                 this.scrollertween = new me.Tween(this).to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
 
-                this.scroller = "THIS IS THE TITLE SCREEN THIS IS THE TITLE SCREEN THIS IS THE TITLE SCREEN";
+                this.scroller = "THIS IS THE LOSS SCREEN THIS IS THE LOSS SCREEN THIS IS THE LOSS SCREEN";
                 this.scrollerpos = 600;
             },
 
@@ -44,7 +44,7 @@ game.TitleScreen = me.ScreenObject.extend({
             },
 
             draw : function (renderer) {
-                this.font.draw(renderer, "PRESS ENTER TO PLAY", 20, 240);
+                this.font.draw(renderer, "PRESS ENTER TO PLAY AGAIN", 20, 240);
                 this.font.draw(renderer, this.scroller, this.scrollerpos, 440);
             },
             onDestroyEvent : function () {

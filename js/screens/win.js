@@ -1,4 +1,4 @@
-game.TitleScreen = me.ScreenObject.extend({
+game.WinScreen = me.ScreenObject.extend({
     /**
      * action to perform on state change
      */
@@ -28,7 +28,7 @@ game.TitleScreen = me.ScreenObject.extend({
                 // a tween to animate the arrow
                 this.scrollertween = new me.Tween(this).to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
 
-                this.scroller = "THIS IS THE TITLE SCREEN THIS IS THE TITLE SCREEN THIS IS THE TITLE SCREEN";
+                this.scroller = "THIS IS THE WIN SCREEN THIS IS THE WIN SCREEN THIS IS THE WIN SCREEN";
                 this.scrollerpos = 600;
             },
 
@@ -44,7 +44,7 @@ game.TitleScreen = me.ScreenObject.extend({
             },
 
             draw : function (renderer) {
-                this.font.draw(renderer, "PRESS ENTER TO PLAY", 20, 240);
+                this.font.draw(renderer, "CONGRATS YOU WON", 20, 240);
                 this.font.draw(renderer, this.scroller, this.scrollerpos, 440);
             },
             onDestroyEvent : function () {
@@ -53,25 +53,13 @@ game.TitleScreen = me.ScreenObject.extend({
             }
         })), 2);
 
-        // change to play state on press Enter or click/tap
-        me.input.bindKey(me.input.KEY.ENTER, "enter", true);
-        me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
-        this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
-            if (action === "enter") {
-                // play something on tap / enter
-                // this will unlock audio on mobile devices
-                me.audio.play("cling");
-                me.state.change(me.state.PLAY);
-            }
-        });
+
     },
 
     /**
      * action to perform when leaving this screen (state change)
      */
     onDestroyEvent : function () {
-        me.input.unbindKey(me.input.KEY.ENTER);
-        me.input.unbindPointer(me.input.pointer.LEFT);
-        me.event.unsubscribe(this.handler);
+
     }
 });

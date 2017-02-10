@@ -43,6 +43,9 @@ game.HUD.ScoreItem = me.Renderable.extend( {
 
         // local copy of the global score
         this.score = -1;
+        this.gold = -1;
+        this.enemyCount = -1;
+
     },
 
     /**
@@ -51,8 +54,12 @@ game.HUD.ScoreItem = me.Renderable.extend( {
     update : function (dt) {
         // we don't draw anything fancy here, so just
         // return true if the score has been updated
-        if (this.score !== game.data.score) {
-            this.score = game.data.score;
+        if (this.score != game.data.health || this.gold != game.data.gold || this.enemyCount != game.data.enemyCount) {
+            this.score = game.data.health;
+            this.gold = game.data.gold;
+            this.enemyCount = game.data.enemyCount;
+
+
             return true;
         }
         return false;
@@ -63,6 +70,8 @@ game.HUD.ScoreItem = me.Renderable.extend( {
      */
     draw : function (renderer) {
         // this.pos.x, this.pos.y are the relative position from the screen right bottom
-        this.font.draw (renderer, game.data.score, me.game.viewport.width + this.pos.x, me.game.viewport.height + this.pos.y);
+        this.font.draw (renderer, "Health " + game.data.health, me.game.viewport.width + this.pos.x, me.game.viewport.height + this.pos.y);
+        this.font.draw (renderer, "Money " + game.data.gold, me.game.viewport.width + this.pos.x, me.game.viewport.height + this.pos.y - 32);
+        this.font.draw (renderer, "Enemies Left " + game.data.enemyCount, me.game.viewport.width + this.pos.x, me.game.viewport.height + this.pos.y - 64)
     }
 });

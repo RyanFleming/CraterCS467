@@ -9,14 +9,17 @@ game.PlayScreen = me.ScreenObject.extend({
         me.levelDirector.loadLevel("mall_clone");
 
         // reset the score
-        game.data.score = 20;
+        game.data.health = 20;
+        game.data.gold = 265;
+        game.data.enemyCount = 3;
 
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
+        this.enemyManager = new game.EnemyManager();
 
         //spawn enemy
-
+        me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
     },
 
     /**
@@ -27,6 +30,13 @@ game.PlayScreen = me.ScreenObject.extend({
         me.game.world.removeChild(this.HUD);
         // stop the current audio track
         me.audio.stopTrack();
+        me.input.unbindKey(me.input.KEY.SPACE);
+    },
+
+    checkIfLoss : function () {
+        if (game.data.health <= 0) {
+            me.state.change(me.state.GAME_OVER);
+        }
     }
 });
 
