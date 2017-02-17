@@ -16,10 +16,13 @@ game.PlayScreen = me.ScreenObject.extend({
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
-        this.enemyManager = new game.EnemyManager();
+
 
         //spawn enemy
         me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
+        //me.input.bindPointer(me.input.KEY.B);
+        // map the right button click on the X key
+
     },
 
     /**

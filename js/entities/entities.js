@@ -103,6 +103,7 @@ game.CoinEntity = me.CollectableEntity.extend({
         // call the parent constructor
         this._super(me.CollectableEntity, 'init', [x, y , settings]);
 
+
     },
 
 
@@ -126,6 +127,63 @@ game.CoinEntity = me.CollectableEntity.extend({
 
 
 });
+
+game.BuildEntity = me.Entity.extend({
+    // extending the init function is not mandatory
+    // unless you need to add some extra initialization
+    init: function (x, y, settings) {
+        // define this here instead of tiled
+        //settings.image = "wheelie_right";
+
+        // save the area size defined in Tiled
+        //var width = settings.width;
+        //var height = settings.height;
+
+        // adjust the size setting information to match the sprite size
+        // so that the entity object is created with the right size
+        //settings.framewidth = settings.width = 64;
+        //settings.frameheight = settings.height = 64;
+
+        // redefine the default shape (used to define path) with a shape matching the renderable
+        //settings.shapes[0] = new me.Rect(0, 0, settings.framewidth, settings.frameheight);
+
+        // call the parent constructor
+        this._super(me.Entity, 'init', [x, y , settings]);
+
+        // set start/end position based on the initial area size
+        //x = this.pos.x;
+        //this.startX = x;
+        //this.endX   = x + width - settings.framewidth
+        //this.pos.x  = x + width - settings.framewidth;
+
+        this.alreadyMade = false;
+        console.log(this.alreadyMade);
+
+        me.input.registerPointerEvent('pointerdown', this, this.pointerDown.bind(this));
+
+    },
+
+    update : function (time) {
+        //this._super(me.Sprite, "update", [time]);
+
+
+        return true;
+    },
+
+    pointerDown: function (event) {
+        // do something
+        if (game.data.gold >= 70  && this.alreadyMade == false) {
+            me.game.world.addChild(me.pool.pull("laser", this.pos.x + (3 * game.Laser.width / 2), this.pos.y - (game.Laser.height / 2)))
+            game.data.gold -= 70;
+            this.alreadyMade = true;
+            console.log(this.alreadyMade);
+        }
+        // don"t propagate the event to other objects
+        return false;
+    }
+
+});
+
 
 /**
  * an enemy Entity
@@ -213,60 +271,47 @@ game.EnemyEntity = me.Entity.extend({
     }
 });
 
-game.EnemyManager = me.Container.extend({
-    init : function () {
-        this._super(me.Container, "init", [0, 32,
-            this.COLS * 64 - 32,
-            this.ROWS * 64 - 32
-        ]);
-        this.COLS = 9;
-        this.ROWS = 4;
-        this.vel = 16;
+
+//Tower template from Florian Rappl
+//code project
+var Tower = me.Entity.extend({
+    init: function(x, y, settings) {
+
+        this.range = range || 0;
+        this.targets = [];
+        this.timeToNextShot = 0;
+        this.mazeWeight = 0;
+        this.direction = Direction.left;
+        this.shotType = shotType || {};
+        this.registerEvent(events.shot);
+        this._super(MGNest.speed, 25, MGNest.range, MGNest.shotType);
+        this.createVisual(MGNest.sprite, [1]);
     },
 
-    createEnemies : function () {
-        for (var i = 0; i < this.COLS; i++) {
-            for (var j = 0; j < this.ROWS; j++) {
-                this.addChild(me.pool.pull("enemy", i * 64, j * 64));
-            }
+    update: function() {
+        this._super();
+        var shot = undefined;
+
+        if (this.timeToNextShot <= 0)
+            shot = this.shoot();
+
+        if (shot) {
+            this.triggerEvent(events.shot, shot);
+            this.timeToNextShot = ~~(1000 / this.speed);
+        } else
+            this.timeToNextShot -= constants.ticks;
+    },
+    shoot: function() {
+         var closestTarget = this.getClosestTarget(targets, this.range);
+
+        if (closestTarget) {
+            var shot = new (this.shotType)();
+            shot.mazeCoordinates = this.mazeCoordinates;
+            shot.velocity = closestTarget.mazeCoordinates.subtract(this.mazeCoordinates);
+            shot.direction = shot.velocity.toDirection();
+            shot.targets = targets;
+            this.direction = shot.direction;
+            return shot;
         }
-        this.updateChildBounds();
     },
-
-    onActivateEvent : function () {
-        var _this = this;
-        this.timer = me.timer.setInterval(function () {
-            var bounds = _this.childBounds;
-
-            if ((_this.vel > 0 && (bounds.right + _this.vel) >= me.game.viewport.width) ||
-                (_this.vel < 0 && (bounds.left + _this.vel) <= 0)) {
-                _this.vel *= -1;
-                _this.pos.y += 16;
-                if (_this.vel > 0) {
-                    _this.vel += 5;
-                }
-                else {
-                    _this.vel -= 5;
-                }
-                game.playScreen.checkIfLoss(); // <<<
-            }
-            else {
-                _this.pos.x += _this.vel;
-            }
-        }, 1000);
-    },
-
-    onDeactivateEvent : function () {
-        me.timer.clearInterval(this.timer);
-    },
-
-    removeChildNow : function (child) {
-        this._super(me.Container, "removeChildNow", [child]);
-        this.updateChildBounds();
-    },
-
-    update : function (time) {
-        this._super(me.Container, "update", [time]);
-        this.updateChildBounds();
-    }
 });

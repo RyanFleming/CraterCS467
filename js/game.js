@@ -63,11 +63,16 @@ var game = {
         me.pool.register("CoinEntity", game.CoinEntity);
         me.pool.register("EnemyEntity", game.EnemyEntity);
         me.pool.register("laser", game.Laser);
+        me.pool.register("BuildEntity", game.BuildEntity);
 
         // enable the keyboard
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.X, "jump", true);
+        me.input.bindKey(me.input.KEY.B, "build");
+        //me.input.bindPointer(me.input.KEY.B);
+        // map the right button click on the X key
+       // me.input.bindPointer(me.input.pointer.RIGHT, me.input.KEY.B);
 
 
         // display the menu title
