@@ -1,6 +1,6 @@
 /******************
 Adam Much
-1-24-2017, Last modified: 2-12-2017
+1-24-2017, Last modified: 2-17-2017
 CS 467
 Crater group initial canvas drawing to test a path.
 ******************/
@@ -98,11 +98,16 @@ canvas.addEventListener('mousedown', function(event) {
 	
 	var mousePos = getMousePos(canvas, event);
 	
-	for (i = 0; i < towerArray.length; i++){
+	for (var i = 0; i < towerArray.length; i++){
 		if (Math.abs(towerArray[i].x - mousePos.x) < (3 * TILE_WIDTH) &&
 			Math.abs(towerArray[i].y - mousePos.y) < (3 * TILE_HEIGHT))
 			
-				towerArray[i].active = true;
+				if (towerArray[i].active == true){
+					towerArray[i].active = false;
+				}
+				else{
+					towerArray[i].active = true;	
+				}
 		}
 	
 }, false);
@@ -152,11 +157,14 @@ function showVectorField(){
 
 // Used to select which portion of the image to draw.
 var spriteCounter = 0;
+// Number of pixels to jump per frame. 2 is "normal" speed.
+var increment = 2;
+
 // Draws the bald guy image.
 function animation(){
 	
-	var increment = 2; // Number of pixels to jump per frame.
-	var speed = 60; // Milliseconds to wait to redraw.
+	
+	var speed = 100; // Milliseconds to wait to redraw.
 	
 	// Half the average of a tile side.
 	var radius = TILE_WIDTH / 4 + TILE_HEIGHT / 4;
@@ -195,6 +203,32 @@ function animation(){
 	// Then loop through the objects and draw them.
 	for (var k = 0; k < objectArray.length; k++){
 		
+		// Check for a tower in range.
+		for (var n = 0; n < towerArray.length; n++){
+			if (Math.abs(towerArray[n].x - objectArray[k].x) < (4 * TILE_WIDTH) &&
+				Math.abs(towerArray[n].y - objectArray[k].y) < (4 * TILE_HEIGHT)){
+				
+				// If the tower is active, slow the unit.
+				if (towerArray[n].active == true){
+					objectArray[k].slowed = true;
+				}
+				
+				else {
+					objectArray[k].slowed = false;
+				}			
+			}			
+		}
+		
+		
+		
+		if (objectArray[k].slowed == true){
+			increment = 1;
+		}
+		
+		else {
+			increment = 2;
+		}
+		
 		/**************************
 		//Used for testing object destruction.
 		**************************/
@@ -232,39 +266,39 @@ function animation(){
 			switch (unitVector){
 
 				case 'SE':
-					objectArray[k].x += 1;
-					objectArray[k].y += 1;
+					objectArray[k].x = objectArray[k].x + increment;
+					objectArray[k].y = objectArray[k].y + increment;
 					break;
 
 				case 'S':					
-					objectArray[k].y += 2;
+					objectArray[k].y = objectArray[k].y + 2 * increment;
 					break;
 
 				case 'SW':
-					objectArray[k].x -= 1;
-					objectArray[k].y += 1;
+					objectArray[k].x = objectArray[k].x - increment;
+					objectArray[k].y = objectArray[k].y + increment;
 					break;
 
 				case 'W':
-					objectArray[k].x -= 2;					
+					objectArray[k].x = objectArray[k].x - 2 * increment;					
 					break;
 
 				case 'NW':
-					objectArray[k].x -= 1;
-					objectArray[k].y -= 1;
+					objectArray[k].x = objectArray[k].x - increment;
+					objectArray[k].y = objectArray[k].y - increment;
 					break;
 
 				case 'N':					
-					objectArray[k].y -= 2;
+					objectArray[k].y = objectArray[k].y - 2 * increment;
 					break;
 
 				case 'NE':
-					objectArray[k].x += 1;
-					objectArray[k].y -= 1;
+					objectArray[k].x = objectArray[k].x + increment;
+					objectArray[k].y = objectArray[k].y - increment;
 					break;
 
 				default: // E
-					objectArray[k].x += 2;
+					objectArray[k].x = objectArray[k].x + 2 * increment;	
 					break;
 
 			}
@@ -277,7 +311,7 @@ function animation(){
 
 function addObject(){
 	var i = Math.floor(Math.random() * spawnPoints.length);	
-	objectArray.push({x: spawnPoints[i].x, y: spawnPoints[i].y});	
+	objectArray.push({x: spawnPoints[i].x, y: spawnPoints[i].y, slowed: false});
 };
 
 function drawBaldGuy(x, y, direction, counter){
