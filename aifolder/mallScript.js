@@ -36,20 +36,20 @@ function drawBackground(){
 // Draw the background on load.
 drawBackground();
 
-// Arrays to hold the customers and spawn points.
+// Arrays to hold the customers, towers, and spawn points.
 var objectArray = [];
 var towerArray = [
 	// Middle of column 7, rows 7 and 14.
-	{x: 6 * TILE_WIDTH + TILE_WIDTH / 2, y: 6 * TILE_HEIGHT + TILE_HEIGHT / 2},
-	{x: 6 * TILE_WIDTH + TILE_WIDTH / 2, y: 13 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 6 * TILE_WIDTH + TILE_WIDTH / 2, y: 6 * TILE_HEIGHT + TILE_HEIGHT / 2, active: false},
+	{x: 6 * TILE_WIDTH + TILE_WIDTH / 2, y: 13 * TILE_HEIGHT + TILE_HEIGHT / 2, active: false},
 	
 	// Middle of column 15, rows 4 and 17.
-	{x: 14 * TILE_WIDTH + TILE_WIDTH / 2, y: 3 * TILE_HEIGHT + TILE_HEIGHT / 2},
-	{x: 14 * TILE_WIDTH + TILE_WIDTH / 2, y: 16 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 14 * TILE_WIDTH + TILE_WIDTH / 2, y: 3 * TILE_HEIGHT + TILE_HEIGHT / 2, active: false},
+	{x: 14 * TILE_WIDTH + TILE_WIDTH / 2, y: 16 * TILE_HEIGHT + TILE_HEIGHT / 2, active: false},
 	
 	// between columns 26 and 27, rows 5 and 16. 
-	{x: 26 * TILE_WIDTH, y: 4 * TILE_HEIGHT + TILE_HEIGHT / 2},
-	{x: 26 * TILE_WIDTH, y: 15 * TILE_HEIGHT + TILE_HEIGHT / 2}
+	{x: 26 * TILE_WIDTH, y: 4 * TILE_HEIGHT + TILE_HEIGHT / 2, active: false},
+	{x: 26 * TILE_WIDTH, y: 15 * TILE_HEIGHT + TILE_HEIGHT / 2, active: false}
 	
 ];
 var spawnPoints = [
@@ -84,78 +84,29 @@ var spawnPoints = [
 	//{x: 29 * TILE_WIDTH + TILE_WIDTH / 2, y: 14 * TILE_HEIGHT + TILE_HEIGHT / 2}	
 ];
 
-// Show or hide spawn points.
-var toggleSpawn = true;
+// Function to track the mouse position.
+function getMousePos(canvas, event) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+	  x: event.clientX - rect.left,
+	  y: event.clientY - rect.top
+	};
+}
 
-function showSpawnPoints(){
+// On a mouse down event, check for a tower to activate.
+canvas.addEventListener('mousedown', function(event) {
 	
-	// Either show the spawn points.
-	if (toggleSpawn){
-		// Half the average of a tile side.
-		var radius = TILE_WIDTH / 4 + TILE_HEIGHT / 4;		
-
-		for (var i = 0; i < spawnPoints.length; i++){
+	var mousePos = getMousePos(canvas, event);
+	
+	for (i = 0; i < towerArray.length; i++){
+		if (Math.abs(towerArray[i].x - mousePos.x) < (3 * TILE_WIDTH) &&
+			Math.abs(towerArray[i].y - mousePos.y) < (3 * TILE_HEIGHT))
 			
-			context.fillStyle = 'black';
-			context.beginPath();
-			//x, y of center, radius, start, and end angle.
-			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 0, Math.PI / 3);
-			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
-			context.fill();	
-			
-			context.fillStyle = 'yellow';
-			context.beginPath();
-			//x, y of center, radius, start, and end angle.
-			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, Math.PI / 3, 2 * Math.PI / 3);
-			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
-			context.fill();	
-			
-			context.fillStyle = 'black';
-			context.beginPath();
-			//x, y of center, radius, start, and end angle.
-			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 2 * Math.PI / 3, Math.PI);
-			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
-			context.fill();	
-			
-			context.fillStyle = 'yellow';
-			context.beginPath();
-			//x, y of center, radius, start, and end angle.
-			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, Math.PI, 4 * Math.PI / 3);
-			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
-			context.fill();	
-			
-			context.fillStyle = 'black';
-			context.beginPath();
-			//x, y of center, radius, start, and end angle.
-			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 4 * Math.PI / 3, 5 * Math.PI / 3);
-			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
-			context.fill();	
-			
-			context.fillStyle = 'yellow';
-			context.beginPath();
-			//x, y of center, radius, start, and end angle.
-			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 5 * Math.PI / 3, 2 * Math.PI);
-			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
-			context.fill();	
-			
-			context.fillStyle = 'red';
-			context.beginPath();
-			//x, y of center, radius, start, and end angle.
-			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius / 3, 0, Math.PI * 2);
-			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
-			context.fill();
+				towerArray[i].active = true;
 		}
-		
-		toggleSpawn = false;
-	}
 	
-	// Or draw the background.
-	else{		
-		context.drawImage(img, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-		toggleSpawn = true;
-	}
-	
-};
+}, false);
+
 
 var columns = 30;
 var rows = 20;
@@ -218,11 +169,21 @@ function animation(){
 	// Then draw the tower spawn points.
 	for (var m = 0; m < towerArray.length; m++){
 
-		context.strokeStyle = 'yellow';
-		context.beginPath();
-		//x, y of center, radius, start and end angle.
-		context.arc(towerArray[m].x, towerArray[m].y, radius, 0, Math.PI * 2); 
-		context.stroke();
+		if (towerArray[m].active == true){
+			context.fillStyle = 'yellow';
+			context.beginPath();
+			//x, y of center, radius, start and end angle.
+			context.arc(towerArray[m].x, towerArray[m].y, radius, 0, Math.PI * 2); 
+			context.fill();			
+		}
+		
+		else{
+			context.strokeStyle = 'yellow';
+			context.beginPath();
+			//x, y of center, radius, start and end angle.
+			context.arc(towerArray[m].x, towerArray[m].y, radius, 0, Math.PI * 2); 
+			context.stroke();
+		}
 		
 		context.strokeStyle = 'blue';
 		context.beginPath();
@@ -397,6 +358,84 @@ function drawBaldGuy(x, y, direction, counter){
 					context.drawImage(baldImage, offset, 121, 12, 28, x, y, TILE_WIDTH, TILE_HEIGHT);
 					break;
 	}	
+};
+
+
+/*******************
+Code for testing, to be removed later
+********************/
+
+// Show or hide spawn points.
+var toggleSpawn = true;
+
+function showSpawnPoints(){
+	
+	// Either show the spawn points.
+	if (toggleSpawn){
+		// Half the average of a tile side.
+		var radius = TILE_WIDTH / 4 + TILE_HEIGHT / 4;		
+
+		for (var i = 0; i < spawnPoints.length; i++){
+			
+			context.fillStyle = 'black';
+			context.beginPath();
+			//x, y of center, radius, start, and end angle.
+			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 0, Math.PI / 3);
+			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
+			context.fill();	
+			
+			context.fillStyle = 'yellow';
+			context.beginPath();
+			//x, y of center, radius, start, and end angle.
+			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, Math.PI / 3, 2 * Math.PI / 3);
+			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
+			context.fill();	
+			
+			context.fillStyle = 'black';
+			context.beginPath();
+			//x, y of center, radius, start, and end angle.
+			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 2 * Math.PI / 3, Math.PI);
+			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
+			context.fill();	
+			
+			context.fillStyle = 'yellow';
+			context.beginPath();
+			//x, y of center, radius, start, and end angle.
+			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, Math.PI, 4 * Math.PI / 3);
+			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
+			context.fill();	
+			
+			context.fillStyle = 'black';
+			context.beginPath();
+			//x, y of center, radius, start, and end angle.
+			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 4 * Math.PI / 3, 5 * Math.PI / 3);
+			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
+			context.fill();	
+			
+			context.fillStyle = 'yellow';
+			context.beginPath();
+			//x, y of center, radius, start, and end angle.
+			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius, 5 * Math.PI / 3, 2 * Math.PI);
+			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
+			context.fill();	
+			
+			context.fillStyle = 'red';
+			context.beginPath();
+			//x, y of center, radius, start, and end angle.
+			context.arc(spawnPoints[i].x, spawnPoints[i].y, radius / 3, 0, Math.PI * 2);
+			context.lineTo(spawnPoints[i].x, spawnPoints[i].y);
+			context.fill();
+		}
+		
+		toggleSpawn = false;
+	}
+	
+	// Or draw the background.
+	else{		
+		context.drawImage(img, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
+		toggleSpawn = true;
+	}
+	
 };
 
 
