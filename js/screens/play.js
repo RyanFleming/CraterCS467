@@ -9,9 +9,11 @@ game.PlayScreen = me.ScreenObject.extend({
         me.levelDirector.loadLevel("mall_clone");
 
         // reset the score
-        game.data.health = 20;
+        game.data.health = 10;
         game.data.gold = 265;
-        game.data.enemyCount = 3;
+        game.data.enemyCount = 13;
+
+
 
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();

@@ -64,6 +64,9 @@ var game = {
         me.pool.register("EnemyEntity", game.EnemyEntity);
         me.pool.register("laser", game.Laser);
         me.pool.register("BuildEntity", game.BuildEntity);
+        me.pool.register("Turret", game.Turret);
+        me.pool.register("Shot", game.Shot);
+        me.pool.register("SpawnEntity", game.SpawnEntity);
 
         // enable the keyboard
         me.input.bindKey(me.input.KEY.LEFT, "left");
