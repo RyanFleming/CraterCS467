@@ -23,6 +23,9 @@ img.src = "images/mall_clone.png";
 var baldImage = new Image();
 baldImage.src = "images/baldGuy.png";
 
+var barricade = new Image();
+barricade.src = "images/Candy_Fence_sprite_001.png";
+
 //Draws the background and scales it to the globally defined IMAGE_WIDTH and IMAGE_HEIGHT.
 function drawBackground(){	
 	// For some reason this onload function is necessary.
@@ -178,11 +181,13 @@ function animation(){
 	for (var m = 0; m < towerArray.length; m++){
 
 		if (towerArray[m].active == true){
-			context.fillStyle = 'yellow';
+			// drawImage(image, sourceX, sourceY, sourcewidth, sourceHeight, x, y, width, height);
+			context.drawImage(barricade, 0, 0, 2051, 1913, towerArray[m].x - TILE_WIDTH / 2, towerArray[m].y - TILE_HEIGHT / 2, TILE_WIDTH, TILE_HEIGHT);
+			/*context.fillStyle = 'yellow';
 			context.beginPath();
 			//x, y of center, radius, start and end angle.
 			context.arc(towerArray[m].x, towerArray[m].y, radius, 0, Math.PI * 2); 
-			context.fill();			
+			context.fill();	*/		
 		}
 		
 		else{
@@ -216,7 +221,7 @@ function animation(){
 				else {
 					objectArray[k].slowed = false;
 				}			
-			}			
+			}						
 		}
 		
 		
