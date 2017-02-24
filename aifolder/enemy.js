@@ -6,23 +6,27 @@ var TILE_HEIGHT = 32;
 // dx, dy, dw, dh being the destination target & dimensions. sx, sy, sw, sh being the position & dimensions to take from the image
 
 
-game.Enemy = me.Entity.extend({
+game.Enemy = me.Entity.extend({	
   init: function (x, y) {
       this._super(me.Entity, "init", [x, y, {
           image : "shopper1",
           width : 64,
-          height : 64
+          height : 64		  
       }]);
 		
 	  	this.speed = 60;
 	  	this.x = x;
 	  	this.y = y;
+	  	this.timeToNextMove = 0;
 	  	
+	  	this.renderable.scale(0.7, 0.7);
 	  	this.renderable.addAnimation("right", [143, 144, 145, 146, 147, 148, 149, 150, 151], 3);
 	  	this.renderable.addAnimation("down", [130, 131, 132, 133, 134, 135, 136, 137, 138], 3);
 	  	this.renderable.addAnimation("left", [117, 118, 119, 120, 121, 122, 123, 124, 125], 3);
-	  	this.renderable.addAnimation("up", [104, 105, 106, 107, 108, 109, 110, 111, 112], 3);
+	  	this.renderable.addAnimation("up", [104, 105, 106, 107, 108, 109, 110, 111, 112], 3);	  
 	  	this.chooseImage(getDirection(this.x, this.y));
+	  	
+	  	
 	  	//this.alwaysUpdate = true;
   },
 	
@@ -69,8 +73,24 @@ game.Enemy = me.Entity.extend({
   update: function (dt) {
       this._super(me.Entity, "update", [dt]);
 	  
-	  var direction = getDirection(this.pos.x, this.pos.y);	  
-	  this.chooseImage(direction);
+	  var direction = getDirection(this.pos.x, this.pos.y);
+	   this.chooseImage(direction);
+	  /*
+	  var moved = false;
+	  
+	  if (this.timeToNextMove <= 0){
+		  this.chooseImage(direction);
+		  moved = true;
+	  }
+	  
+	  if (moved){
+		this.timeToNextMove = 1000;
+		moved = false;
+	  }
+	  
+	  else {
+		 this.timeToNextMove -= me.timer.tick; 
+	  }*/
 	  
 	  switch (direction){
 
