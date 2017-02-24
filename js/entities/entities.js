@@ -29,6 +29,7 @@ game.PlayerEntity = me.Entity.extend({
         this.health = 16;
 
 
+
     },
 
     /**
@@ -81,7 +82,15 @@ game.PlayerEntity = me.Entity.extend({
         game.data.gold += 3;
         game.data.enemyCount -= 1;
         if (game.data.enemyCount <= 0) {
-            me.state.change(me.state.GAME_END);
+            if (game.data.level == 1 || game.data.level == 2 || game.data.level == 3 || game.data.level == 4){
+                console.log("should go to next level");
+                game.data.level += 1;
+                me.state.change(me.state.READY);
+
+            }
+            if (game.data.level > 4) {
+                me.state.change(me.state.GAME_END);
+            }
         }
         me.game.world.removeChild(this);
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
@@ -126,6 +135,7 @@ game.CoinEntity = me.CollectableEntity.extend({
             me.state.change(me.state.GAME_END);
         }*/
         if (game.data.health <= 0) {
+            console.log("why is this triggering")
             me.state.change(me.state.GAME_OVER);
         }
 
@@ -180,7 +190,7 @@ game.BuildEntity = me.Entity.extend({
     pointerDown: function (event) {
         // do something
         if (game.data.gold >= 70  && this.alreadyMade == false) {
-            me.game.world.addChild(me.pool.pull("Turret", this.pos.x + (2.5 * game.Laser.width), this.pos.y - (game.Laser.height / 5)))
+            me.game.world.addChild(me.pool.pull("Turret", this.pos.x + (4 * 32), this.pos.y))
             game.data.gold -= 70;
             this.alreadyMade = true;
             console.log(this.alreadyMade);

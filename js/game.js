@@ -6,9 +6,10 @@ var game = {
      * an object where to store game global data
      */
     data: {
-        health: 0,
+        health: 20,
         gold: 0,
-        enemyCount: 0
+        enemyCount: 0,
+        level: 1
     },
 
     // Run on page load.
@@ -48,6 +49,8 @@ var game = {
 
         // set the "Play/Ingame" Screen Object
         me.state.set(me.state.PLAY, new game.PlayScreen());
+
+        me.state.set(me.state.READY, new game.ReadyScreen());
 
         //set the loss screen
         me.state.set(me.state.GAME_OVER, new game.LossScreen());

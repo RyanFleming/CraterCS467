@@ -4,14 +4,63 @@ game.PlayScreen = me.ScreenObject.extend({
      */
     onResetEvent : function () {
         // play the audio track
-        me.audio.playTrack("dst-inertexponent");
-        // load a level
-        me.levelDirector.loadLevel("mall_clone");
 
-        // reset the score
-        game.data.health = 10;
-        game.data.gold = 265;
-        game.data.enemyCount = 13;
+        if (game.data.level == 1) {
+            me.audio.playTrack("dst-inertexponent");
+            // load a level
+            me.levelDirector.loadLevel("mall_clone");
+
+            // reset the score
+            game.data.health = 10;
+            game.data.gold = 265;
+            game.data.enemyCount = 13;
+            console.log("level 1 loaded");
+            console.log(game.data.level);
+
+        }
+
+        if (game.data.level == 2) {
+            me.audio.playTrack("dst-inertexponent");
+            // load a level
+            me.levelDirector.loadLevel("mall_clone");
+
+            // reset the score
+            game.data.health = 10;
+            game.data.gold = 220;
+            game.data.enemyCount = 13;
+            console.log("level 2 loaded");
+            console.log(game.data.level);
+
+        }
+
+        if (game.data.level == 3) {
+            me.audio.playTrack("dst-inertexponent");
+            // load a level
+            me.levelDirector.loadLevel("mall_clone");
+
+            // reset the score
+            game.data.health = 10;
+            game.data.gold = 300;
+            game.data.enemyCount = 13;
+            console.log("level 3 loaded");
+            console.log(game.data.level);
+
+        }
+
+        if (game.data.level == 4) {
+            me.audio.playTrack("dst-inertexponent");
+            // load a level
+            me.levelDirector.loadLevel("mall_clone");
+
+            // reset the score
+            game.data.health = 10;
+            game.data.gold = 680;
+            game.data.enemyCount = 13;
+            console.log("level 4 loaded");
+            console.log(game.data.level);
+
+        }
+
 
 
 
@@ -40,7 +89,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
     checkIfLoss : function () {
         if (game.data.health <= 0) {
-            me.state.change(me.state.GAME_OVER);
+         //   me.state.change(me.state.GAME_OVER);
         }
     }
 });
