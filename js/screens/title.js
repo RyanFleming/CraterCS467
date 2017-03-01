@@ -5,7 +5,7 @@ game.TitleScreen = me.ScreenObject.extend({
     onResetEvent : function () {
         // title screen
         var backgroundImage = new me.Sprite(0, 0, {
-                image: me.loader.getImage('titleScreen'),
+                image: me.loader.getImage('title_screen'),
             }
         );
 

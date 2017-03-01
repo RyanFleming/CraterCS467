@@ -7,6 +7,9 @@ game.PlayScreen = me.ScreenObject.extend({
         me.audio.playTrack("dst-inertexponent");
         // load a level
         me.levelDirector.loadLevel("mall_clone");
+		
+		var i = Math.floor(Math.random() * spawnPoints.length);	
+		me.game.world.addChild(me.pool.pull("enemy", spawnPoints[i].x, spawnPoints[i].y), 2);
 
         // reset the score
         game.data.health = 10;
@@ -21,9 +24,11 @@ game.PlayScreen = me.ScreenObject.extend({
 
 
         //spawn enemy
-        me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
+        //me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
         //me.input.bindPointer(me.input.KEY.B);
         // map the right button click on the X key
+		
+		
 
     },
 

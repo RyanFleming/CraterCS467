@@ -45,6 +45,11 @@ game.resources = [
         "src": "data/img/map/terrain-Derivation_5.png"
     },
     {
+        "name": "shopper1",
+        "type": "image",
+        "src": "data/img/shopper1.png"
+    },
+    {
         "name": "gripe_run_right",
         "type": "image",
         "src": "data/img/sprite/gripe_run_right.png"
