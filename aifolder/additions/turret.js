@@ -66,15 +66,18 @@ game.Turret = me.Entity.extend({
 			
 			if (sine < 0){			
 				this.firingAngle = this.firingAngle + Math.PI;
-				//this.renderable.transform(this.matrix.setTransform(cosine, sine, -1 * sine, cosine, 0, 0));
+				this.renderable.setCurrentAnimation("left");
+			}
+			  
+			else{
+				this.renderable.setCurrentAnimation("right");
 			}
 			
-			this.renderable.transform(this.matrix.setTransform(cosine, sine, -1 * sine, cosine, 0, 0));
+			this.setMatrix();
 			  
 			if (this.counter >= 70){
-
-
-				me.game.world.addChild(me.pool.pull("laser", this.pos.x + TILE_WIDTH / 2, this.pos.y + TILE_HEIGHT / 2, this.laserSpeed, this.firingAngle));
+				this.shoot();
+				
 				this.counter = 0;
 			}
 
@@ -82,6 +85,57 @@ game.Turret = me.Entity.extend({
 	  }
       return true;
   },	
+	
+	
+	// Find a target, favors targetArray spawn order.
+	getTarget: function(){		
+		var distance, cosine, sine;
+		
+		for (i = 0; i < targetArray.length; i++){
+			
+			distance = this.getDistance(targetArray[i].x, targetArray[i].y);			
+			cosine = (targetArray[i].x - this.x) / distance;
+			sine = (this.y - targetArray[i].y) / distance;
+			
+			this.firingAngle = Math.acos(cosine);
+			
+			if (sine < 0){			
+				this.firingAngle = this.firingAngle + Math.PI;
+				this.renderable.setCurrentAnimation("left");
+			}
+			
+			else{
+				this.renderable.setCurrentAnimation("right");	
+			}
+			
+		
+			if (distance < this.range){ // Put in && targetArray[i].isAlive.
+				this.firing = true;
+				this.targetIndex = i;
+				this.setMatrix();				
+				break;
+			}
+		}
+		return false; 
+	},
+	
+	// Adds a laser to the game using the current firing angle and pre-defined speed.
+	shoot: function(){
+		var x, y, speed, angle;
+		x = this.pos.x + TILE_WIDTH / 2;
+		y = this.pos.y + TILE_HEIGHT / 2;
+		speed = this.laserSpeed;
+		angle = this.firingAngle;
+		me.game.world.addChild(me.pool.pull("laser", x, y, speed, angle));	
+	},
+	
+	// Rotates the image counter-clockwise using the current firing angle.
+	setMatrix: function(){
+		var cosTheta = Math.cos(this.firingAngle);
+		var sinTheta = Math.sin(this.firingAngle);		
+		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
+		
+	},
 	
 	// Rotates the image clockwise using the current firing angle.
 	resetMatrix: function(){
@@ -98,35 +152,6 @@ game.Turret = me.Entity.extend({
 		yComponent = Math.pow(this.y - locationY, 2);
 		distance = Math.sqrt(xComponent + yComponent);
 		return distance;
-	},
-	
-	getTarget: function(){		
-		var distance, xDist, yDist, cosTheta, sinTheta;
-		
-		for (i = 0; i < targetArray.length; i++){
-			
-			distance = this.getDistance(targetArray[i].x, targetArray[i].y);
-			if (this.y < targetArray[i].y){
-				cosTheta = (this.x - targetArray[i].x) / distance;
-			}
-			else{
-				cosTheta = (targetArray[i].x - this.x) / distance;
-			}
-			sinTheta = (this.y - targetArray[i].y) / distance;
-			
-			if (distance < this.range){ // Put in && targetArray[i].isAlive.
-				this.firing = true;
-				this.targetIndex = i;
-				this.firingAngle = Math.acos(cosTheta);
-				//console.log("angle: " + this.firingAngle);				
-				this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));				
-				break;
-			}
-		}
-		
 	}
 });
 
-function getAngle(x1, y1, x2, y2){
-	return Math.atan((y2 - y1) / (x2 - x1));
-};
