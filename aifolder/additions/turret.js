@@ -17,7 +17,8 @@ game.Turret = me.Entity.extend({
 	  this.firing = false;
 	  this.firingAngle = 0;
 	  this.targetIndex = 0;
-	  this.matrix = new me.Matrix2d();	  
+	  this.matrix = new me.Matrix2d();
+	  this.matrixIsSet = false;
 	  
 	  this.renderable.addAnimation("right", [0], 2);
 	  this.renderable.addAnimation("left", [1], 2);
@@ -43,36 +44,28 @@ game.Turret = me.Entity.extend({
 		  var outOfRange = this.getDistance(targetArray[i].x, targetArray[i].y);
 		  
 		  // Target is out of range.
-		  if (outOfRange > this.range ){
+		  if (outOfRange > this.range ){ // Put in || !targetArray[i].isAlive.
 			  
-			  // Reset the image to facing right, set the angle to 0, and set firing to false.
-			  this.resetMatrix();
+			  // Reset the image to facing right, set the angle to 0, and set firing to false.			 
+			  this.setMatrix();
 			  this.firingAngle = 0;
 			  this.firing = false;			
 		  }
 		  
 		  // Target is in range.
 		  else{
-			// Reset the matrix.
-			this.resetMatrix();
+			// Reset the matrix.			
+			this.setMatrix();
 			  
-			var distance;
+			var distance, cosine, sine;
 			var i = this.targetIndex;
-			distance = this.getDistance(targetArray[i].x, targetArray[i].y);
-			  
-			var cosine = (targetArray[i].x - this.x) / distance;
-			var sine = (this.y - targetArray[i].y) / distance;
+			distance = this.getDistance(targetArray[i].x, targetArray[i].y);			  
+			cosine = (targetArray[i].x - this.x) / distance;
+			sine = (this.y - targetArray[i].y) / distance;
 			this.firingAngle = Math.acos(cosine);
 			
-			if (sine < 0){			
-				this.firingAngle = this.firingAngle + Math.PI;
-				this.renderable.setCurrentAnimation("left");
-			}
-			  
-			else{
-				this.renderable.setCurrentAnimation("right");
-			}
 			
+			this.setAnimation(sine);
 			this.setMatrix();
 			  
 			if (this.counter >= 70){
@@ -95,19 +88,11 @@ game.Turret = me.Entity.extend({
 			
 			distance = this.getDistance(targetArray[i].x, targetArray[i].y);			
 			cosine = (targetArray[i].x - this.x) / distance;
-			sine = (this.y - targetArray[i].y) / distance;
-			
+			sine = (this.y - targetArray[i].y) / distance;			
 			this.firingAngle = Math.acos(cosine);
 			
-			if (sine < 0){			
-				this.firingAngle = this.firingAngle + Math.PI;
-				this.renderable.setCurrentAnimation("left");
-			}
 			
-			else{
-				this.renderable.setCurrentAnimation("right");	
-			}
-			
+			this.setAnimation(sine);
 		
 			if (distance < this.range){ // Put in && targetArray[i].isAlive.
 				this.firing = true;
@@ -117,6 +102,21 @@ game.Turret = me.Entity.extend({
 			}
 		}
 		return false; 
+	},
+	
+	// Chooses the left or right facing turret and corrects the firing angle.
+	setAnimation: function(sine){
+		if (sine < 0){			
+			this.firingAngle = this.firingAngle + Math.PI;
+			this.renderable.setCurrentAnimation("left");
+			this.matrixIsSet = true;
+		}
+
+		else{
+			this.renderable.setCurrentAnimation("right");
+			this.matrixIsSet = false;
+		}
+		
 	},
 	
 	// Adds a laser to the game using the current firing angle and pre-defined speed.
@@ -129,21 +129,21 @@ game.Turret = me.Entity.extend({
 		me.game.world.addChild(me.pool.pull("laser", x, y, speed, angle));	
 	},
 	
-	// Rotates the image counter-clockwise using the current firing angle.
+	// Rotates the image using the current firing angle. If the matrix is not set, rotates couter-clockwise.
 	setMatrix: function(){
 		var cosTheta = Math.cos(this.firingAngle);
-		var sinTheta = Math.sin(this.firingAngle);		
+		var sinTheta = Math.sin(this.firingAngle);
+		if (this.matrixIsSet){
+			sinTheta = -1 * sinTheta;
+			this.matrixIsSet = false;
+		}
+		
+		else{
+			this.matrixIsSet = true;	
+		}
+		
 		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
-		
-	},
-	
-	// Rotates the image clockwise using the current firing angle.
-	resetMatrix: function(){
-		var cosTheta = Math.cos(this.firingAngle);
-		var sinTheta = Math.sin(this.firingAngle);		
-		this.renderable.transform(this.matrix.setTransform(cosTheta, -1 * sinTheta, sinTheta, cosTheta, 0, 0));
-		
-	},
+	},	
 	
 	// Simple function to return the distance from the turret to a given x and y.
 	getDistance: function(locationX, locationY){
