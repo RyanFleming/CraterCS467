@@ -1,3 +1,5 @@
+var targetArray = [];
+
 game.PlayScreen = me.ScreenObject.extend({
     /**
      * action to perform on state change
@@ -11,18 +13,19 @@ game.PlayScreen = me.ScreenObject.extend({
             me.levelDirector.loadLevel("mall_clone");
 
             // reset the score
-            game.data.health = 10;
+            game.data.health = 100;
             game.data.gold = 265;
-            game.data.enemyCount = 13;
+            game.data.enemyCount = 74;
             console.log("level 1 loaded");
             console.log(game.data.level);
+            enemyManager();
 
         }
 
         if (game.data.level == 2) {
             me.audio.playTrack("dst-inertexponent");
             // load a level
-            me.levelDirector.loadLevel("mall_clone");
+            me.levelDirector.loadLevel("bullseye_clone");
 
             // reset the score
             game.data.health = 10;
@@ -36,7 +39,7 @@ game.PlayScreen = me.ScreenObject.extend({
         if (game.data.level == 3) {
             me.audio.playTrack("dst-inertexponent");
             // load a level
-            me.levelDirector.loadLevel("mall_clone");
+            me.levelDirector.loadLevel("best_buy_clone");
 
             // reset the score
             game.data.health = 10;
@@ -50,7 +53,7 @@ game.PlayScreen = me.ScreenObject.extend({
         if (game.data.level == 4) {
             me.audio.playTrack("dst-inertexponent");
             // load a level
-            me.levelDirector.loadLevel("mall_clone");
+            me.levelDirector.loadLevel("floor_mart_clone");
 
             // reset the score
             game.data.health = 10;
@@ -85,6 +88,7 @@ game.PlayScreen = me.ScreenObject.extend({
         // stop the current audio track
         me.audio.stopTrack();
         me.input.unbindKey(me.input.KEY.SPACE);
+        targetArray = [];
     },
 
     checkIfLoss : function () {

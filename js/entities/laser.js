@@ -1,8 +1,12 @@
 game.Laser = me.Entity.extend({
-    init : function (x, y, xSpeed, ySpeed) {
+    init : function (x, y, speed, angle) {
         this._super(me.Entity, "init", [x, y, { width: game.Laser.width, height: game.Laser.height }]);
         this.z = 5;
-        this.body.setVelocity(xSpeed, ySpeed);
+        this.speed = speed;
+        this.angle = angle;
+        //var xSpeed = speed * Math.cos(angle);
+        //var ySpeed = speed * Math.sin(angle);
+        //this.body.setVelocity(xSpeed, ySpeed);
         this.body.collisionType = me.collision.types.PROJECTILE_OBJECT;
         this.renderable = new (me.Renderable.extend({
             init : function () {
@@ -20,16 +24,16 @@ game.Laser = me.Entity.extend({
     },
 
     update : function (time) {
-        this.body.vel.x -= this.body.accel.x * time / 1000;
-        if (this.pos.x + this.width <= 0) {
-            me.game.world.removeChild(this);
-        }
-        this.body.vel.y -= this.body.accel.y * time / 1000;
-        if (this.pos.y + this.height <= 0) {
-            me.game.world.removeChild(this);
-        }
-        this.body.update();
-        me.collision.check(this);
+
+        var yUpdate = Math.sin(this.angle);
+        this.pos.y -= (yUpdate * this.speed * time / 1000);
+        if (yUpdate > 0 )
+            this.pos.x += (Math.cos(this.angle) * this.speed * time / 1000);
+        else
+            this.pos.x -= (Math.cos(this.angle) * this.speed * time / 1000);
+
+
+        //me.collision.check(this);
 
 
         return true;

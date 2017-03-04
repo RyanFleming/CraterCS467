@@ -64,6 +64,8 @@ var game = {
         // register our player entity in the object pool
         me.pool.register("mainPlayer", game.PlayerEntity);
         me.pool.register("CoinEntity", game.CoinEntity);
+        me.pool.register("Enemy", game.Enemy);
+        me.pool.register("Enemy2", game.Enemy2);
         me.pool.register("EnemyEntity", game.EnemyEntity);
         me.pool.register("laser", game.Laser);
         me.pool.register("BuildEntity", game.BuildEntity);

@@ -177,6 +177,7 @@ game.BuildEntity = me.Entity.extend({
         console.log(this.alreadyMade);
 
         me.input.registerPointerEvent('pointerdown', this, this.pointerDown.bind(this));
+        this.body.setCollisionMask(me.collision.types.NO_OBJECT)
 
     },
 
@@ -351,7 +352,7 @@ game.EnemyEntity = me.Entity.extend({
     }*/
 });
 
-game.Turret = me.Entity.extend({
+/*game.Turret = me.Entity.extend({
     init: function(x, y, settings) {
         var settings = {};
         settings.image = "mgnest";
@@ -406,7 +407,7 @@ game.Turret = me.Entity.extend({
         //    return shot;
         }
     },*/
-    getClosestTarget: function(targets, maximum) {
+/*    getClosestTarget: function(targets, maximum) {
         var closestTarget;
         var dist = Number.MAX_VALUE;
 
@@ -424,7 +425,7 @@ game.Turret = me.Entity.extend({
             return closestTarget;
     },
 
-});
+});*/
 
 game.Shot = me.Entity.extend({
     init: function(speed, animationDelay, damage, impactRadius) {
