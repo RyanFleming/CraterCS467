@@ -25,7 +25,7 @@ game.Enemy = me.Entity.extend({
 	  	this.renderable.addAnimation("down", [130, 131, 132, 133, 134, 135, 136, 137, 138], 3);
 	  	this.renderable.addAnimation("left", [117, 118, 119, 120, 121, 122, 123, 124, 125], 3);
 	  	this.renderable.addAnimation("up", [104, 105, 106, 107, 108, 109, 110, 111, 112], 3);	  
-	  	this.chooseImage(getDirection(this.x, this.y));
+	  	this.chooseImage(getDirection(this.x, this.y, game.data.level));
 	  
 	  	this.number = targetArray.length;
 	    targetArray.push({x: this.x, y: this.y, isAlive: true});
@@ -75,7 +75,7 @@ game.Enemy = me.Entity.extend({
   update: function (dt) {
       this._super(me.Entity, "update", [dt]);
 	  
-	  var direction = getDirection(this.pos.x + TILE_WIDTH / 2, this.pos.y + TILE_HEIGHT / 2);
+	  var direction = getDirection(this.pos.x + TILE_WIDTH / 2, this.pos.y + TILE_HEIGHT / 2, game.data.level);
 	   this.chooseImage(direction);
 	  /*
 	  var moved = false;
@@ -184,67 +184,3 @@ game.Enemy = me.Entity.extend({
 	}
 
 });
-
-var spawnPoints = [
-	// Column 1, rows 6, 7, 8, 9.
-	{x: 0, y: 5 * TILE_HEIGHT},
-	{x: 0, y: 6 * TILE_HEIGHT},
-	{x: 0, y: 7 * TILE_HEIGHT},
-	{x: 0, y: 8 * TILE_HEIGHT},
-	
-	// Column 1, rows 12, 13, 14, 15.
-	{x: 0, y: 11 * TILE_HEIGHT},
-	{x: 0, y: 12 * TILE_HEIGHT},
-	{x: 0, y: 13 * TILE_HEIGHT},
-	{x: 0, y: 14 * TILE_HEIGHT},
-	
-	
-	// Columns 13, 14, 15, 16, 17, row 1.
-	{x: 12 * TILE_WIDTH, y: 0},
-	{x: 13 * TILE_WIDTH, y: 0},
-	{x: 14 * TILE_WIDTH, y: 0},
-	{x: 15 * TILE_WIDTH, y: 0},
-	{x: 16 * TILE_WIDTH, y: 0},
-	
-	// Columns 13, 14, 15, 16, 17, row 20.
-	{x: 12 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
-	{x: 13 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
-	{x: 14 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
-	{x: 15 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
-	{x: 16 * TILE_WIDTH, y: 19 * TILE_HEIGHT}
-	
-	// Spawn point to test westardly walking.
-	//,
-	//{x: 29 * TILE_WIDTH, y: 14 * TILE_HEIGHT}	
-];
-
-
-var direction = [
-['SE', 'SE', 'SE', 'SE', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'SE', 'SE', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'SW'],//0	
-['SE', 'SE', 'SE', 'E', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'S', 'S', 'SW', 'SW', 'SW', 'SW', 'W'],	
-['SE', 'SE', 'SE', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'SE', 'S', 'S', 'SW', 'SW', 'SW', 'SW', 'W'],	
-['SE', 'SE', 'E', 'E', 'NE', 'NE', 'N', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'SE', 'SE', 'S', 'SW', 'SW', 'SW', 'SW', 'W'],	
-['SE', 'E', 'E', 'E', 'NE', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'SE', 'SE', 'S', 'SW', 'SW', 'SW', 'SW', 'W'],//4	
-['E', 'E', 'E', 'E', 'NE', 'N', 'N', 'E', 'SE', 'SE', 'S', 'S', 'E', 'SE', 'S', 'S', 'E', 'SE', 'SE', 'S', 'S', 'E', 'SE', 'SE', 'S', 'W', 'W', 'W', 'W', 'W'],	
-['E', 'NE', 'E', 'E', 'SE', 'SE', 'S', 'E', 'SE', 'SE', 'SE', 'S', 'S', 'SE', 'SE', 'S', 'S', 'SE', 'S', 'S', 'S', 'E', 'SE', 'SE', 'S', 'S', 'S', 'S', 'S', 'SW'],	
-['NE', 'N', 'N', 'E', 'SE', 'SE', 'S', 'E', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'E', 'SE', 'SE', 'S', 'SE', 'SE', 'SE', 'S', 'SW'],	
-['NE', 'N', 'N', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'SE', 'SE', 'S', 'SE', 'SE', 'SE', 'S', 'SW'],	
-['N', 'N', 'N', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'SE', 'E', 'E', 'E', 'SE', 'SW'],//9
-['S', 'S', 'S', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'NE', 'E', 'E', 'E', 'NE', 'NW'],	
-['S', 'S', 'S', 'E', 'NE', 'NE', 'NE', 'NE', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'NE', 'NE', 'N', 'NE', 'NE', 'NE', 'N', 'NW'],	
-['SE', 'S', 'S', 'E', 'NE', 'N', 'N', 'E', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'E', 'NE', 'NE', 'N', 'NE', 'NE', 'NE', 'N', 'NW'],	
-['SE', 'E', 'E', 'E', 'NE', 'NE', 'N', 'E', 'NE', 'NE', 'NE', 'N', 'N', 'NE', 'NE', 'N', 'N', 'NE', 'N', 'N', 'N', 'E', 'NE', 'NE', 'N', 'N', 'N', 'N', 'N', 'NW'],
-['E', 'E', 'E', 'E', 'SE', 'S', 'S', 'E', 'SE', 'SE', 'N', 'N', 'E', 'NE', 'N', 'N', 'E', 'NE', 'NE', 'N', 'N', 'E', 'NE', 'NE', 'N', 'W', 'W', 'W', 'W', 'W'],//14	
-['NE', 'E', 'E', 'E', 'E', 'SE', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'NE', 'NE', 'N', 'NW', 'NW', 'NW', 'NW', 'W'],	
-['NE', 'NE', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'NE', 'NE', 'N', 'NW', 'NW', 'NW', 'NW', 'W'],	
-['NE', 'NE', 'NE', 'E', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'E', 'E', 'E', 'E', 'NE', 'NE', 'N', 'N', 'NW', 'NW', 'NW', 'NW', 'W'],	
-['NE', 'NE', 'NE', 'E', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'N', 'N', 'NW', 'NW', 'NW', 'NW', 'W'],	
-['NE', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'NE', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'NW'] //19
-];
-
-var columns = 30;
-var rows = 20;
-function getDirection(x, y){
-	return direction[Math.floor((y + 0.5) / TILE_HEIGHT)][Math.floor((x + 0.5) / TILE_WIDTH)];	
-};
-
