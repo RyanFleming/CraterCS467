@@ -168,6 +168,8 @@ game.Enemy = me.Entity.extend({
 			}
 		}
 		me.game.world.removeChild(this);
+		// Set the target array so the turrets choose a new target.
+		targetArray[this.number].isAlive = false;
 		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 
 		if (this.health <= 0)
