@@ -18,6 +18,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.enemyCount = 74;
             console.log("level 1 loaded");
             console.log(game.data.level);
+			targetArray = [];
             enemyManager();
 
         }
@@ -33,6 +34,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.enemyCount = 13;
             console.log("level 2 loaded");
             console.log(game.data.level);
+			targetArray = [];
 
         }
 
@@ -47,6 +49,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.enemyCount = 13;
             console.log("level 3 loaded");
             console.log(game.data.level);
+			targetArray = [];
 
         }
 
@@ -61,6 +64,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.enemyCount = 13;
             console.log("level 4 loaded");
             console.log(game.data.level);
+			targetArray = [];
 
         }
 
