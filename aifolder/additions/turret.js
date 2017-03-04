@@ -12,8 +12,8 @@ game.Turret = me.Entity.extend({
 	  
 	  this.x = x;
 	  this.y = y;	  
-	  this.laserSpeed = 750;
-	  this.range = 5 * (TILE_WIDTH / 2 + TILE_HEIGHT / 2);
+	  this.laserSpeed = 500;
+	  this.range = 4 * (TILE_WIDTH / 2 + TILE_HEIGHT / 2);
 	  this.firing = false;
 	  this.firingAngle = 0;
 	  this.targetIndex = 0;
@@ -122,11 +122,11 @@ game.Turret = me.Entity.extend({
 	// Adds a laser to the game using the current firing angle and pre-defined speed.
 	shoot: function(){
 		var x, y, speed, angle;
-		x = this.pos.x + TILE_WIDTH / 2;
-		y = this.pos.y + TILE_HEIGHT / 2;
+		x = this.pos.x + TILE_WIDTH / 2 - 16; // 16 is the width of the packing peanut sprite.
+		y = this.pos.y + TILE_HEIGHT / 2 - 16;
 		speed = this.laserSpeed;
 		angle = this.firingAngle;
-		me.game.world.addChild(me.pool.pull("laser", x, y, speed, angle));	
+		me.game.world.addChild(me.pool.pull("packingNut", x, y, speed, angle));	
 	},
 	
 	// Rotates the image using the current firing angle. If the matrix is not set, rotates couter-clockwise.
