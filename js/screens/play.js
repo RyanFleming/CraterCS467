@@ -35,6 +35,7 @@ game.PlayScreen = me.ScreenObject.extend({
             console.log("level 2 loaded");
             console.log(game.data.level);
 			targetArray = [];
+			enemyManager();
 
         }
 

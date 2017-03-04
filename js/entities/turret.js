@@ -127,7 +127,7 @@ game.Turret = me.Entity.extend({
 		y = this.pos.y + TILE_HEIGHT / 2 - 16;
 		speed = this.laserSpeed;
 		angle = this.firingAngle;
-		me.game.world.addChild(me.pool.pull("laser", x, y, speed, angle));
+		me.game.world.addChild(me.pool.pull("peanut", x, y, speed, angle));
 	},
 	
 	// Rotates the image using the current firing angle. If the matrix is not set, rotates couter-clockwise.

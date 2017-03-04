@@ -9,8 +9,24 @@ var TILE_HEIGHT = 32;
 	me.pool.register("enemy5", game.Enemy);
 };*/
 
+var quickMode = true;
+var timeArray = [0, 25000, 50000, 75000, 100000, 125000, 150000, 182000, 214000, 246000];
+var functionArray = ['waveOne', 'waveOne', 'waveTwo', 'waveTwo', 'waveThree', 'waveThree', 'waveFour', 'waveFive', 'waveSix', 'waveSeven']; 
 function enemyManager(){
-	setTimeout(waveOne, 0, true);
+	
+	/*var myTimer;
+	for (var i = 0; i < timeArray.length; i++){
+		if (quickMode){
+			myTimer = timeArray[i] / 10;
+		}
+		
+		else{
+			myTimer = timeArray[i];
+		}
+		setTimeout(functionArray[i], myTimer, true);
+		
+	}
+	*/setTimeout(waveOne, 0, true);
 	setTimeout(waveOne, 25000, true);
 	setTimeout(waveTwo, 50000, true);
 	setTimeout(waveTwo, 75000, true);
