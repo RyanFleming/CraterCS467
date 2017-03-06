@@ -57,7 +57,58 @@ function getDirection(x, y, level){
 			['NE', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'N', 'NW', 'W', 'W'] //19
 			];
 			break;
-
+			
+		case 3:
+			// Bestbuy level
+			direction = [
+			['E', 'E', 'S', 'S', 'S', 'S', 'W', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'S', 'W', 'W'],//0	
+			['E', 'E', 'S', 'S', 'S', 'S', 'W', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'S', 'S', 'W', 'W'],	
+			['E', 'E', 'S', 'S', 'S', 'S', 'S', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'SE', 'SE', 'S', 'SW', 'W', 'W'],	
+			['E', 'E', 'S', 'SE', 'SE', 'SE', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'SE', 'SE', 'S', 'S', 'S', 'S'],	
+			['E', 'E', 'S', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'SE', 'SE', 'S', 'S', 'S'],//4	
+			['E', 'E', 'S', 'E', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'E', 'SE', 'S', 'S', 'S'],
+			['E', 'E', 'S', 'NE', 'N', 'N', 'N', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'N', 'SE', 'SE', 'S', 'S', 'S'],
+			['E', 'E', 'S', 'NE', 'N', 'N', 'W', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'S', 'E', 'SE', 'SE', 'S', 'S', 'S'],	
+			['E', 'E', 'SE', 'SE', 'S', 'S', 'S', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'S', 'S', 'SE', 'SE', 'S', 'S', 'S'],	
+			['E', 'E', 'E', 'E', 'SE', 'SE', 'SE', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],//9
+			['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],	
+			['E', 'E', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'N', 'N', 'N'],	
+			['E', 'E', 'N', 'NE', 'N', 'N', 'N', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'N', 'N', 'NE', 'NE', 'N', 'N', 'N'],	
+			['E', 'E', 'N', 'E', 'NE', 'NE', 'N', 'E', 'NE', 'NE', 'NE', 'N', 'N', 'NE', 'NE', 'N', 'N', 'NE', 'N', 'N', 'N', 'E', 'NE', 'NE', 'N', 'N', 'N', 'N', 'N', 'NW'],
+			['E', 'E', 'N', 'SE', 'S', 'S', 'S', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'SE', 'S', 'S', 'NE', 'N', 'N', 'N', 'N'],//14	
+			['E', 'E', 'N', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'NE', 'N', 'N', 'N', 'N'],	
+			['E', 'E', 'N', 'E', 'E', 'NE', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'NE', 'NE', 'NE', 'N', 'N', 'W', 'W'],	
+			['E', 'E', 'N', 'NE', 'N', 'N', 'N', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'N', 'N', 'NW', 'W'],	
+			['E', 'E', 'N', 'NE', 'N', 'N', 'E', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'NE', 'N', 'NW', 'N', 'N', 'N', 'W', 'W'],	
+			['E', 'E', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'W', 'W'] //19
+			];
+			break;
+			
+		default:
+			// Floormart level
+			direction = [
+			['SE', 'S', 'S', 'S', 'S', 'S', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'SE', 'S', 'S', 'S', 'S', 'SW'],//0	
+			['SE', 'SE', 'SE', 'S', 'S', 'W', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'N', 'N', 'N', 'N', 'NW', 'W', 'W', 'W', 'W', 'W', 'W', 'E', 'S', 'SW', 'SW', 'SW', 'W'],	
+			['SE', 'SE', 'SE', 'SE', 'S', 'S', 'S', 'S', 'W', 'W', 'W', 'W', 'W', 'N', 'N', 'N', 'N', 'E', 'E', 'E', 'E', 'E', 'S', 'S', 'S', 'S', 'SW', 'SW', 'SW', 'W'],	
+			['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'N', 'N', 'N', 'N', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],	
+			['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'NE', 'N', 'N', 'N', 'N', 'NW', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],//4	
+			['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'NE', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'N', 'N', 'N', 'NW', 'NW', 'NW', 'NW', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],	
+			['E', 'NE', 'E', 'E', 'E', 'E', 'E', 'NE', 'N', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'NW', 'NW', 'NW', 'N', 'N', 'NW', 'NW', 'NW', 'NW', 'W'],	
+			['E', 'N', 'NE', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'W', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'N', 'W', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'NW', 'NW', 'N', 'W'],	
+			['E', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'NW', 'W', 'W', 'E', 'E', 'E', 'NE', 'N', 'N', 'NW', 'W', 'W', 'E', 'E', 'E', 'NE', 'N', 'N', 'N', 'N', 'N', 'W'],	
+			['E', 'N', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'E', 'NE', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'E', 'NE', 'N', 'N', 'N', 'NW', 'NW', 'N', 'W'],//9
+			['E', 'N', 'NE', 'NE', 'NE', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'E', 'NE', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'E', 'NE', 'N', 'N', 'N', 'NW', 'NW', 'N', 'W'],
+			['E', 'N', 'NE', 'NE', 'N', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'E', 'NE', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'NE', 'N', 'N', 'N', 'N', 'NW', 'NW', 'N', 'W'],	
+			['E', 'N', 'N', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'NW', 'E', 'NE', 'N', 'N', 'NW', 'NE', 'N', 'N', 'NW', 'E', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'N', 'W'],	
+			['E', 'N', 'N', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'N', 'W'],	
+			['E', 'N', 'N', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'N', 'W'],//14
+			['E', 'N', 'N', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'N', 'W'],
+			['E', 'N', 'N', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'E', 'N', 'N', 'NW', 'NE', 'N', 'N', 'N', 'N', 'W'],
+			['E', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'NE', 'N', 'N', 'E', 'N', 'N', 'NW', 'W', 'E', 'NE', 'N', 'N', 'E', 'N', 'NW', 'W', 'E', 'NE', 'N', 'N', 'N', 'W'],
+			['E', 'N', 'N', 'N', 'N', 'NW', 'W', 'E', 'NE', 'N', 'N', 'E', 'N', 'N', 'NW', 'W', 'E', 'N', 'N', 'N', 'E', 'N', 'NW', 'NW', 'NE', 'N', 'N', 'N', 'N', 'W'],
+			['NE', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'NW'] //19
+			];
+			break;
 	}
 
 
@@ -65,6 +116,7 @@ function getDirection(x, y, level){
 return direction[Math.floor((y + 0.5) / TILE_HEIGHT)][Math.floor((x + 0.5) / TILE_WIDTH)];	
 };
 
+/*
 // Mall level
 var spawnPoints = [
 	// Column 1, rows 6, 7, 8, 9.
@@ -94,7 +146,78 @@ var spawnPoints = [
 	{x: 15 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
 	{x: 16 * TILE_WIDTH, y: 19 * TILE_HEIGHT}
 	
-	// Spawn point to test westardly walking.
-	//,
-	//{x: 29 * TILE_WIDTH, y: 14 * TILE_HEIGHT}	
 ];
+
+// Bullseye level
+var spawnPoints = [
+	// Columns 24, 25, 26, 27, 28, row 1.
+	{x: 23 * TILE_WIDTH, y: 0},
+	{x: 24 * TILE_WIDTH, y: 0},
+	{x: 25 * TILE_WIDTH, y: 0},
+	{x: 26 * TILE_WIDTH, y: 0},
+	{x: 27 * TILE_WIDTH, y: 0},	
+	
+	// Columns 24, 25, 26, 27, 28, row 20.
+	{x: 23 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 24 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 25 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 26 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 27 * TILE_WIDTH, y: 19 * TILE_HEIGHT},	
+	
+	// Columns 16, 17, 18, row 20.
+	{x: 15 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 16 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 17 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	
+	// Columns 12, 13, 14, row 20.
+	{x: 11 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 12 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 13 * TILE_WIDTH, y: 19 * TILE_HEIGHT}	
+	
+];
+
+// Best buy level
+var spawnPoints = [	
+	// Columns 13, 14, 15, 16, 17, row 1.
+	{x: 2 * TILE_WIDTH, y: 0},
+	{x: 3 * TILE_WIDTH, y: 0},
+	{x: 4 * TILE_WIDTH, y: 0},	
+	{x: 5 * TILE_WIDTH, y: 0},
+	
+	{x: 25 * TILE_WIDTH, y: 0},
+	{x: 26 * TILE_WIDTH, y: 0},
+	{x: 27 * TILE_WIDTH, y: 0},
+	
+	// Columns 13, 14, 15, 16, 17, row 20.
+	{x: 2 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 3 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 4 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 5 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	
+	{x: 25 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 26 * TILE_WIDTH, y: 19 * TILE_HEIGHT},
+	{x: 27 * TILE_WIDTH, y: 19 * TILE_HEIGHT}	
+];
+
+// Floormart level
+var spawnPoints = [	
+	// Middle of columns 6, 7, 8, 9, 10, row 20.
+	{x: 5 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 6 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 7 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 8 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 9 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	
+	// Middle of columns 15, 16, 17, 18 row 20.
+	{x: 14 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 15 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 16 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 17 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	
+	// Middle of columns 22, 23, 24, 25 row 20.
+	{x: 21 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 22 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 23 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2},
+	{x: 24 * TILE_WIDTH + TILE_WIDTH / 2, y: 19 * TILE_HEIGHT + TILE_HEIGHT / 2}	
+];
+*/
