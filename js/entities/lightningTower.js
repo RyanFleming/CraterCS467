@@ -12,8 +12,8 @@ game.LightningTower = me.Entity.extend({
 	  
 	  this.x = x;
 	  this.y = y;	  
-	  this.laserSpeed = 500;
-	  this.range = 2 * (TILE_WIDTH / 2 + TILE_HEIGHT / 2);
+	  this.laserSpeed = 250;
+	  this.range = 3 * (TILE_WIDTH / 2 + TILE_HEIGHT / 2);
 	  this.firing = false;
 	  this.firingAngle = 0;
 	  this.targetIndex = 0;
@@ -40,8 +40,8 @@ game.LightningTower = me.Entity.extend({
 		  var i = this.targetIndex;
 		  var outOfRange = this.getDistance(targetArray[i].x, targetArray[i].y);
 		  
-		  // Target is out of range.
-		  if (outOfRange > this.range ){ // Put in || !targetArray[i].isAlive.
+		   // Target is out of range or dead.
+		  if (outOfRange > this.range || targetArray[i].isAlive === false){
 			  
 			  // Reset the image to facing right, set the angle to 0, and set firing to false.			 
 			 // this.setMatrix();
@@ -58,9 +58,11 @@ game.LightningTower = me.Entity.extend({
 			var i = this.targetIndex;
 			distance = this.getDistance(targetArray[i].x, targetArray[i].y);			  
 			cosine = (targetArray[i].x - this.x) / distance;
-			sine = (this.y - targetArray[i].y) / distance;
+			sine = (this.y - targetArray[i].y) / distance;			  
 			this.firingAngle = Math.acos(cosine);
-			
+			  
+			if (sine < 0)
+				this.firingAngle += Math.PI;
 			
 			//this.setAnimation(sine);
 			//this.setMatrix();
@@ -91,7 +93,8 @@ game.LightningTower = me.Entity.extend({
 			
 			//this.setAnimation(sine);
 		
-			if (distance < this.range){ // Put in && targetArray[i].isAlive.
+			// Target is in range and alive.
+			if (distance < this.range && targetArray[i].isAlive === true){
 				this.firing = true;
 				this.targetIndex = i;
 				//this.setMatrix();				
@@ -118,6 +121,7 @@ game.LightningTower = me.Entity.extend({
 	
 	// Adds a laser to the game using the current firing angle and pre-defined speed.
 	shoot: function(){
+		me.audio.play("electricShock");
 		var x, y, speed, angle;
 		x = this.pos.x + TILE_WIDTH / 2; // Width of 15, height of 32.
 		y = this.pos.y + TILE_HEIGHT / 2;

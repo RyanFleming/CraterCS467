@@ -40,8 +40,8 @@ game.SprayCan = me.Entity.extend({
 		  var i = this.targetIndex;
 		  var outOfRange = this.getDistance(targetArray[i].x, targetArray[i].y);
 		  
-		  // Target is out of range.
-		  if (outOfRange > this.range ){ // Put in || !targetArray[i].isAlive.
+		   // Target is out of range or dead.
+		  if (outOfRange > this.range || targetArray[i].isAlive === false){
 			  
 			  // Reset the image to facing right, set the angle to 0, and set firing to false.			 
 			 // this.setMatrix();
@@ -60,6 +60,9 @@ game.SprayCan = me.Entity.extend({
 			cosine = (targetArray[i].x - this.x) / distance;
 			sine = (this.y - targetArray[i].y) / distance;
 			this.firingAngle = Math.acos(cosine);
+			  
+			if (sine < 0)
+				this.firingAngle += Math.PI;
 			
 			
 			//this.setAnimation(sine);
@@ -91,7 +94,8 @@ game.SprayCan = me.Entity.extend({
 			
 			//this.setAnimation(sine);
 		
-			if (distance < this.range){ // Put in && targetArray[i].isAlive.
+			// Target is in range and alive.
+			if (distance < this.range && targetArray[i].isAlive === true){
 				this.firing = true;
 				this.targetIndex = i;
 				//this.setMatrix();				

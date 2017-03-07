@@ -122,6 +122,7 @@ game.Turret = me.Entity.extend({
 	
 	// Adds a laser to the game using the current firing angle and pre-defined speed.
 	shoot: function(){
+		me.audio.play("snowBallToss");
 		var x, y, speed, angle;
 		x = this.pos.x + TILE_WIDTH / 2 - 16; // 16 is the width of the packing peanut sprite.
 		y = this.pos.y + TILE_HEIGHT / 2 - 16;

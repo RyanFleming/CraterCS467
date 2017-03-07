@@ -11,6 +11,14 @@ game.PlayScreen = me.ScreenObject.extend({
             me.audio.playTrack("dst-inertexponent");
             // load a level
             me.levelDirector.loadLevel("mall_clone");
+			
+			/******************************
+			Tower Testing
+			
+			*******************************/
+			//me.game.world.addChild(me.pool.pull("turret", 17 * TILE_WIDTH, 1 * TILE_HEIGHT), 2);
+			me.game.world.addChild(me.pool.pull("sprayCan", 21 * TILE_WIDTH + 10, 6 * TILE_HEIGHT), 2);
+			me.game.world.addChild(me.pool.pull("lightningTower", 21 * TILE_WIDTH + 8, 13 * TILE_HEIGHT), 2);
 
             // reset the score
             game.data.health = 100;

@@ -9,7 +9,7 @@ game.Peanut = me.Entity.extend({
 			this.speed = speed;
 			this.angle = angle;
 			this.renderable.scale(0.3, 0.3);
-			var frame = ~~(Math.random() * 5);
+			var frame = ~~(Math.random() * 4);
 	  		this.renderable.addAnimation("nut", [frame], 5);	  		
 			this.renderable.setCurrentAnimation("nut");	
 
