@@ -72,12 +72,14 @@ var game = {
 		me.pool.register("peanut", game.Peanut);
 		me.pool.register("lightning", game.Lightning);
 		me.pool.register("pepperSpray", game.PepperSpray);
+		me.pool.register("blank", game.Blank);
 		
         me.pool.register("BuildEntity", game.BuildEntity);
         me.pool.register("Turret", game.Turret);
 		me.pool.register("turret", game.Turret);
 		me.pool.register("lightningTower", game.LightningTower);
 		me.pool.register("sprayCan", game.SprayCan);
+		me.pool.register("barricade", game.Barricade);
 		
         me.pool.register("Shot", game.Shot);
         me.pool.register("SpawnEntity", game.SpawnEntity);

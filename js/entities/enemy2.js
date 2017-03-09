@@ -11,15 +11,18 @@ game.Enemy2 = me.Entity.extend({
       this._super(me.Entity, "init", [x, y, {
           image : "shopper2",
           width : 64,
-          height : 64		  
+          height : 64
       }]);
 		
 	  	this.speed = 30;
 	  	this.x = x;
 	  	this.y = y;
 	  	this.timeToNextMove = 0;
-	  this.health = 64;
-      this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
+      	this.health = 10;
+	  	this.fireCodeValue = 1;
+     	this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
+	  	this.alreadyHit = [];
+	  
 	  	this.renderable.scale(0.7, 0.7);
 	  	this.renderable.addAnimation("right", [143, 144, 145, 146, 147, 148, 149, 150, 151], 3);
 	  	this.renderable.addAnimation("down", [130, 131, 132, 133, 134, 135, 136, 137, 138], 3);
@@ -28,7 +31,7 @@ game.Enemy2 = me.Entity.extend({
 	  	this.chooseImage(getDirection(this.x, this.y, game.data.level));
 	  
 	  	this.number = targetArray.length;
-	  	targetArray.push({x: this.x, y: this.y, isAlive: true});
+	    targetArray.push({x: this.x, y: this.y, isAlive: true});
 	  	console.log("x: " + this.x + " y: " + this.y + " length: " + targetArray.length);	  	
   },
 	
@@ -135,50 +138,88 @@ game.Enemy2 = me.Entity.extend({
 			}
 	  targetArray[this.number].x = this.pos.x + TILE_WIDTH / 2;
 	  targetArray[this.number].y = this.pos.y + TILE_HEIGHT / 2;
-      //collison check
-      me.collision.check(this);
-	  // change targetArray.isAlive to false on death.
+
+	  //collison check
+	  me.collision.check(this);
+	  if (this.health <= 0)	{
+			game.data.gold += 3;
+			game.data.enemyCount -= 1;
+			// remove it
+			me.game.world.removeChild(this);
+			// Set the target array so the turrets choose a new target.
+			targetArray[this.number].isAlive = false;
+			//this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+		}	  
       return true;
   },
 
-    /**
-     /**
-     * colision handler and gameplay functions
-     */
-    onCollision : function () {
-        // do something when collected
+	/**
+	 /**
+	 * colision handler and gameplay functions
+	 */
+	onCollision : function (res, other) {
+		// Check game state first.
+		if (game.data.enemyCount <= 0) {
+			if (game.data.level == 1 || game.data.level == 2 || game.data.level == 3 || game.data.level == 4){
+				console.log("should go to next level");
+				game.data.level += 1;
+				me.state.change(me.state.READY);
 
-        // play a "coin collected" sound
-        me.audio.play("cling");
+			}
+			if (game.data.level > 4) {
+				me.state.change(me.state.GAME_END);
+			}
+		}
+		
+		// Collision with a tower's projectile.
+		if (other.body.collisionType === me.collision.types.PROJECTILE_OBJECT){			
+			
+			// Packing nut.
+			if (other.damage == 2){				
+				me.audio.play("snowBallHit");
+				this.health -= other.damage;
+			}
+			
+			// Pepper spray.
+			else if (other.damage == 5){
+				// If the array is empty take damage and push to the array.				
+				if (this.alreadyHit.length == 0){
+					this.health -= other.damage;
+					this.alreadyHit.push(other.id);					
+				}
+				
+				// Otherwise check to see if this enemy has already been hit by this pepper spray.
+				else{
+					for (var i = 0; i < this.alreadyHit.length; i++){
+						// Already hit.
+						if (this.alreadyHit[i] === other.id){
+							// Don't take away any damage.	
+						}
+						// Not hit yet.
+						else{				
+							this.health -= other.damage;
+							this.alreadyHit.push(other.id);
+						}
+					}
+				}
+			}
+			
+			// Other projectiles.
+			else{
+				this.health -= other.damage;
+			}
+		}
+		
+		// Enemy reaches the store.
+		else if (other.body.collisionType === me.collision.types.COLLECTABLE_OBJECT){			
+			// play a "coin collected" sound
+			me.audio.play("cling");
+			game.data.enemyCount -= 1;
+			game.data.health -= this.fireCodeValue;
+			me.game.world.removeChild(this);
+		}
+		
+		//this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+	}
 
-        // Take away life
-        this.health -= 1;
-        game.data.gold += 3;
-        game.data.enemyCount -= 1;
-        if (game.data.enemyCount <= 0) {
-            if (game.data.level == 1 || game.data.level == 2 || game.data.level == 3 || game.data.level == 4){
-                console.log("should go to next level");
-                game.data.level += 1;
-                me.state.change(me.state.READY);
-
-            }
-            if (game.data.level > 4) {
-                me.state.change(me.state.GAME_END);
-            }
-        }
-        me.game.world.removeChild(this);
-		// Set the target array so the turrets choose a new target.
-		targetArray[this.number].isAlive = false;
-        this.body.setCollisionMask(me.collision.types.NO_OBJECT);
-
-        if (this.health <= 0)
-        {
-            game.data.gold += 3;
-            // remove it
-            me.game.world.removeChild(this);
-            this.body.setCollisionMask(me.collision.types.NO_OBJECT);
-        }
-
-
-    }
 });

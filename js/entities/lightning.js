@@ -10,6 +10,7 @@ game.Lightning = me.Entity.extend({
 			this.y = y;
 			this.speed = speed;
 			this.angle = angle;
+			this.damage = 20;
 			this.renderable.scale(2, 2);
 			this.scaleFactor = 8;
 			//var frame = ~~(Math.random() * 5);
@@ -55,5 +56,12 @@ game.Lightning = me.Entity.extend({
 
 
         return true;
-    }
+    },
+	
+	onCollision : function (res, other) {
+    	if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+        	me.game.world.removeChild(this);        	
+        	return false;
+    	}
+	}
 });

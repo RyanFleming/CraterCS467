@@ -14,12 +14,15 @@ game.Enemy = me.Entity.extend({
           height : 64
       }]);
 		
-	  	this.speed = 15;
+	  	this.speed = 20;
 	  	this.x = x;
 	  	this.y = y;
 	  	this.timeToNextMove = 0;
-      this.health = 16;
-      this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
+      	this.health = 10;
+	  	this.fireCodeValue = 1;
+     	this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
+	  	this.alreadyHit = [];
+	  
 	  	this.renderable.scale(0.7, 0.7);
 	  	this.renderable.addAnimation("right", [143, 144, 145, 146, 147, 148, 149, 150, 151], 3);
 	  	this.renderable.addAnimation("down", [130, 131, 132, 133, 134, 135, 136, 137, 138], 3);
@@ -138,7 +141,15 @@ game.Enemy = me.Entity.extend({
 
 	  //collison check
 	  me.collision.check(this);
-	  // change targetArray.isAlive to false on death.
+	  if (this.health <= 0)	{
+			game.data.gold += 3;
+			game.data.enemyCount -= 1;
+			// remove it
+			me.game.world.removeChild(this);
+			// Set the target array so the turrets choose a new target.
+			targetArray[this.number].isAlive = false;
+			//this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+		}	  
       return true;
   },
 
@@ -146,16 +157,8 @@ game.Enemy = me.Entity.extend({
 	 /**
 	 * colision handler and gameplay functions
 	 */
-	onCollision : function () {
-		// do something when collected
-
-		// play a "coin collected" sound
-		me.audio.play("cling");
-
-		// Take away life
-		this.health -= 1;
-		game.data.gold += 3;
-		game.data.enemyCount -= 1;
+	onCollision : function (res, other) {
+		// Check game state first.
 		if (game.data.enemyCount <= 0) {
 			if (game.data.level == 1 || game.data.level == 2 || game.data.level == 3 || game.data.level == 4){
 				console.log("should go to next level");
@@ -167,20 +170,56 @@ game.Enemy = me.Entity.extend({
 				me.state.change(me.state.GAME_END);
 			}
 		}
-		me.game.world.removeChild(this);
-		// Set the target array so the turrets choose a new target.
-		targetArray[this.number].isAlive = false;
-		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
-
-		if (this.health <= 0)
-		{
-			game.data.gold += 3;
-			// remove it
-			me.game.world.removeChild(this);
-			this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+		
+		// Collision with a tower's projectile.
+		if (other.body.collisionType === me.collision.types.PROJECTILE_OBJECT){			
+			
+			// Packing nut.
+			if (other.damage == 2){				
+				me.audio.play("snowBallHit");
+				this.health -= other.damage;
+			}
+			
+			// Pepper spray.
+			else if (other.damage == 5){
+				// If the array is empty take damage and push to the array.				
+				if (this.alreadyHit.length == 0){
+					this.health -= other.damage;
+					this.alreadyHit.push(other.id);					
+				}
+				
+				// Otherwise check to see if this enemy has already been hit by this pepper spray.
+				else{
+					for (var i = 0; i < this.alreadyHit.length; i++){
+						// Already hit.
+						if (this.alreadyHit[i] === other.id){
+							// Don't take away any damage.	
+						}
+						// Not hit yet.
+						else{				
+							this.health -= other.damage;
+							this.alreadyHit.push(other.id);
+						}
+					}
+				}
+			}
+			
+			// Other projectiles.
+			else{
+				this.health -= other.damage;
+			}
 		}
-
-
+		
+		// Enemy reaches the store.
+		else if (other.body.collisionType === me.collision.types.COLLECTABLE_OBJECT){			
+			// play a "coin collected" sound
+			me.audio.play("cling");
+			game.data.enemyCount -= 1;
+			game.data.health -= this.fireCodeValue;
+			me.game.world.removeChild(this);
+		}
+		
+		//this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 	}
 
 });

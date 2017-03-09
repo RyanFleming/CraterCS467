@@ -107,7 +107,7 @@ game.Turret = me.Entity.extend({
 	
 	// Chooses the left or right facing turret and corrects the firing angle.
 	setAnimation: function(sine){
-		if (sine < 0){			
+		if (sine <= 0){			
 			this.firingAngle = this.firingAngle + Math.PI;
 			this.renderable.setCurrentAnimation("left");
 			this.matrixIsSet = true;
@@ -143,8 +143,13 @@ game.Turret = me.Entity.extend({
 		else{
 			this.matrixIsSet = true;	
 		}
-		
-		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
+		if (cosTheta !== NaN && sinTheta !== NaN){
+			if (this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0) !== NaN){
+				if (this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0)) !== NaN){
+					//this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
+				}
+			}
+		}
 	},	
 	
 	// Simple function to return the distance from the turret to a given x and y.
