@@ -5,6 +5,7 @@ game.Lightning = me.Entity.extend({
 			width: 32, 
 			height: 32
 		}]);
+			this.projectileID = 1;
 			this.z = 5;
 			this.x = x;
 			this.y = y;

@@ -113,7 +113,7 @@ function getDirection(x, y, level){
 
 
 
-return direction[Math.floor((y + 0.5) / TILE_HEIGHT)][Math.floor((x + 0.5) / TILE_WIDTH)];	
+return direction[Math.floor(parseFloat((y + 0.5) / TILE_HEIGHT))][Math.floor(parseFloat((x + 0.5) / TILE_WIDTH))];	
 };
 
 /*

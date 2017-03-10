@@ -5,6 +5,7 @@ game.PepperSpray = me.Entity.extend({
 			width: 32, 
 			height: 32
 		}]);
+			this.projectileID = 2;
 			this.id = ~~(Math.random() * 99);
 			this.z = 5;
 			this.x = x;

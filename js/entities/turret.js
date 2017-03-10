@@ -143,13 +143,14 @@ game.Turret = me.Entity.extend({
 		else{
 			this.matrixIsSet = true;	
 		}
-		if (cosTheta !== NaN && sinTheta !== NaN){
-			if (this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0) !== NaN){
-				if (this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0)) !== NaN){
+		//if (cosTheta !== NaN && sinTheta !== NaN){
+			//if (this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0) !== NaN){
+				//if (
+					this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0, 0, 0, 1)); //!== NaN){
 					//this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
-				}
-			}
-		}
+				//}
+			//}
+		//}
 	},	
 	
 	// Simple function to return the distance from the turret to a given x and y.

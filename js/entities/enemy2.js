@@ -18,7 +18,7 @@ game.Enemy2 = me.Entity.extend({
 	  	this.x = x;
 	  	this.y = y;
 	  	this.timeToNextMove = 0;
-      	this.health = 10;
+      	this.health = 20;
 	  	this.fireCodeValue = 1;
      	this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
 	  	this.alreadyHit = [];
@@ -175,13 +175,13 @@ game.Enemy2 = me.Entity.extend({
 		if (other.body.collisionType === me.collision.types.PROJECTILE_OBJECT){			
 			
 			// Packing nut.
-			if (other.damage == 2){				
+			if (other.projectileID == 0){				
 				me.audio.play("snowBallHit");
 				this.health -= other.damage;
 			}
 			
 			// Pepper spray.
-			else if (other.damage == 5){
+			else if (other.projectileID == 2){
 				// If the array is empty take damage and push to the array.				
 				if (this.alreadyHit.length == 0){
 					this.health -= other.damage;
@@ -205,6 +205,10 @@ game.Enemy2 = me.Entity.extend({
 			}
 			
 			// Other projectiles.
+			// other.projectileID = 0; peanut.
+			// other.projectileID = 1; lightning.
+			// other.projectileID = 2; pepper spray.
+			// other.projectileID = 3; blank.
 			else{
 				this.health -= other.damage;
 			}

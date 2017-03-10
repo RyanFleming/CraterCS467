@@ -5,6 +5,7 @@ game.Blank = me.Entity.extend({
 			width : 32,
 			height : 30		  
 		}]);
+			this.projectileID = 3;
 			this.z = 5;
 			this.x = x;
 			this.y = y;
