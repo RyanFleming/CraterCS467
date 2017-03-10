@@ -62,36 +62,20 @@ var game = {
         me.state.transition("fade", "#FFFFFF", 250);
 
         // register our player entity in the object pool
-        me.pool.register("mainPlayer", game.PlayerEntity);
-        me.pool.register("CoinEntity", game.CoinEntity);
         me.pool.register("Enemy", game.Enemy);
         me.pool.register("Enemy2", game.Enemy2);
-        me.pool.register("EnemyEntity", game.EnemyEntity);
-		
-        me.pool.register("laser", game.Laser);
-		me.pool.register("peanut", game.Peanut);
-		me.pool.register("lightning", game.Lightning);
-		me.pool.register("pepperSpray", game.PepperSpray);
-		me.pool.register("blank", game.Blank);
-		
-        me.pool.register("BuildEntity", game.BuildEntity);
-        me.pool.register("Turret", game.Turret);
-		me.pool.register("turret", game.Turret);
-		me.pool.register("lightningTower", game.LightningTower);
-		me.pool.register("sprayCan", game.SprayCan);
-		me.pool.register("barricade", game.Barricade);
-		
-        me.pool.register("Shot", game.Shot);
-        me.pool.register("SpawnEntity", game.SpawnEntity);
+        me.pool.register("Enemy3", game.Enemy3);
 
-        // enable the keyboard
-        me.input.bindKey(me.input.KEY.LEFT, "left");
-        me.input.bindKey(me.input.KEY.RIGHT, "right");
-        me.input.bindKey(me.input.KEY.X, "jump", true);
-        me.input.bindKey(me.input.KEY.B, "build");
-        //me.input.bindPointer(me.input.KEY.B);
-        // map the right button click on the X key
-       // me.input.bindPointer(me.input.pointer.RIGHT, me.input.KEY.B);
+        me.pool.register("peanut", game.Peanut);
+        me.pool.register("lightning", game.Lightning);
+        me.pool.register("pepperSpray", game.PepperSpray);
+        me.pool.register("blank", game.Blank);
+
+        me.pool.register("BuildEntity", game.BuildEntity);
+        me.pool.register("turret", game.Turret);
+        me.pool.register("lightningTower", game.LightningTower);
+        me.pool.register("sprayCan", game.SprayCan);
+        me.pool.register("barricade", game.Barricade);
 
 
         // display the menu title
