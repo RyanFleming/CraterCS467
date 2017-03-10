@@ -126,14 +126,7 @@ game.CoinEntity = me.CollectableEntity.extend({
     onCollision : function () {
         // do something when collected
 
-        // play a "coin collected" sound
-        me.audio.play("cling");
 
-        game.data.health -= 1;
-       /* game.data.enemyCount -= 1;
-        if (game.data.enemyCount <= 0) {
-            me.state.change(me.state.GAME_END);
-        }*/
         if (game.data.health <= 0) {
             console.log("why is this triggering")
             me.state.change(me.state.GAME_OVER);
