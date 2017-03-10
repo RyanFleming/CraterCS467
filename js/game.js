@@ -61,6 +61,8 @@ var game = {
         // set a global fading transition for the screen
         me.state.transition("fade", "#FFFFFF", 250);
 
+
+        me.pool.register("CoinEntity", game.CoinEntity);
         // register our player entity in the object pool
         me.pool.register("Enemy", game.Enemy);
         me.pool.register("Enemy2", game.Enemy2);
