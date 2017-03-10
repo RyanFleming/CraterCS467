@@ -14,7 +14,7 @@ game.Enemy3 = me.Entity.extend({
             height : 64
         }]);
 
-        this.speed = 30;
+        this.speed = 40;
         this.x = x;
         this.y = y;
         this.timeToNextMove = 0;
