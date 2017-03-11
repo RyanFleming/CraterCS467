@@ -158,18 +158,7 @@ game.Enemy = me.Entity.extend({
 	 * colision handler and gameplay functions
 	 */
 	onCollision : function (res, other) {
-		// Check game state first.
-		if (game.data.enemyCount <= 0) {
-			if (game.data.level == 1 || game.data.level == 2 || game.data.level == 3 || game.data.level == 4){
-				console.log("should go to next level");
-				game.data.level += 1;
-				me.state.change(me.state.READY);
 
-			}
-			if (game.data.level > 4) {
-				me.state.change(me.state.GAME_END);
-			}
-		}
 
 		// Collision with a tower's projectile.
 		if (other.body.collisionType === me.collision.types.PROJECTILE_OBJECT){

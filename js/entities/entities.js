@@ -11,6 +11,23 @@ game.CoinEntity = me.CollectableEntity.extend({
         this._super(me.CollectableEntity, 'init', [x, y , settings]);
     },
 
+    update : function (time) {
+        //this._super(me.Sprite, "update", [time]);
+        // Check game state first.
+        if (game.data.enemyCount <= 0) {
+            if (game.data.level == 1 || game.data.level == 2 || game.data.level == 3 || game.data.level == 4){
+                console.log("should go to next level");
+                //game.data.level += 1;
+                me.state.change(me.state.READY);
+
+            }
+            if (game.data.level > 4) {
+                me.state.change(me.state.GAME_END);
+            }
+        }
+        return true;
+    },
+
 
     // this function is called by the engine, when
     // an object is touched by something (here collected)
