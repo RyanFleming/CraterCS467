@@ -37,7 +37,7 @@ game.PlayScreen = me.ScreenObject.extend({
             me.levelDirector.loadLevel("bullseye_clone");
 
             // reset the score
-            game.data.health = 1000;
+            game.data.health = 20;
             game.data.gold = 220;
             game.data.enemyCount = 214;
             console.log("level 2 loaded");
@@ -95,8 +95,8 @@ game.PlayScreen = me.ScreenObject.extend({
         me.game.world.removeChild(this.HUD);
         // stop the current audio track
         me.audio.stopTrack();
-        me.input.unbindKey(me.input.KEY.SPACE);
         targetArray = [];
+        game.data.level += 1;
     },
 
 });
