@@ -13,6 +13,7 @@ game.Turret = me.Entity.extend({
 		this.x = x;
 		this.y = y;
 		this.laserSpeed = 500;
+		this.coolDown = 90;
 		this.range = 6 * (TILE_WIDTH / 2 + TILE_HEIGHT / 2);
 		this.firing = false;
 		this.firingAngle = 0;
@@ -26,7 +27,7 @@ game.Turret = me.Entity.extend({
 		this.renderable.addAnimation("down", [3], 2);
 
 		this.renderable.setCurrentAnimation("right");
-		this.counter = 0;
+		this.counter = this.coolDown;
 	},
 
 	update: function (dt) {
@@ -68,9 +69,9 @@ game.Turret = me.Entity.extend({
 				this.setAnimation(sine);
 				this.setMatrix();
 
-				if (this.counter >= 70){
+				// Fire on the target if the cooldown time has passed.
+				if (this.counter >= this.coolDown){
 					this.shoot();
-
 					this.counter = 0;
 				}
 
@@ -143,14 +144,9 @@ game.Turret = me.Entity.extend({
 		else{
 			this.matrixIsSet = true;
 		}
-		//if (cosTheta !== NaN && sinTheta !== NaN){
-		//if (this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0) !== NaN){
-		//if (
-		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0, 0, 0, 1)); //!== NaN){
-		//this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
-		//}
-		//}
-		//}
+		
+		// Remove lines 4351 through 4355 in melonJS.js or the next line will throw errors.
+		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0)); 
 	},
 
 	// Simple function to return the distance from the turret to a given x and y.

@@ -44,17 +44,13 @@ game.LightningTower = me.Entity.extend({
 		   // Target is out of range or dead.
 		  if (outOfRange > this.range || targetArray[i].isAlive === false){
 			  
-			  // Reset the image to facing right, set the angle to 0, and set firing to false.			 
-			 // this.setMatrix();
+			  // Reset the angle to 0, and set firing to false.			 
 			  this.firingAngle = 0;
 			  this.firing = false;			
 		  }
 		  
 		  // Target is in range.
-		  else{
-			// Reset the matrix.			
-			//this.setMatrix();
-			  
+		  else{			  
 			var distance, cosine, sine;
 			var i = this.targetIndex;
 			distance = this.getDistance(targetArray[i].x, targetArray[i].y);			  
@@ -65,12 +61,10 @@ game.LightningTower = me.Entity.extend({
 			if (sine < 0)
 				this.firingAngle += Math.PI;
 			
-			//this.setAnimation(sine);
-			//this.setMatrix();
-			  
+			
+			// Fire on the target if the cooldown time has passed.  
 			if (this.counter >= this.coolDown){
-				this.shoot();
-				
+				this.shoot();				
 				this.counter = 0;
 			}
 
@@ -89,38 +83,19 @@ game.LightningTower = me.Entity.extend({
 			distance = this.getDistance(targetArray[i].x, targetArray[i].y);			
 			cosine = (targetArray[i].x - this.x) / distance;
 			sine = (this.y - targetArray[i].y) / distance;			
-			this.firingAngle = Math.acos(cosine);
-			
-			
-			//this.setAnimation(sine);
+			this.firingAngle = Math.acos(cosine);			
 		
 			// Target is in range and alive.
 			if (distance < this.range && targetArray[i].isAlive === true){
 				this.firing = true;
-				this.targetIndex = i;
-				//this.setMatrix();				
+				this.targetIndex = i;						
 				break;
 			}
 		}
 		return false; 
-	},
+	},	
 	
-	// Chooses the left or right facing turret and corrects the firing angle.
-	setAnimation: function(sine){
-		if (sine < 0){			
-			this.firingAngle = this.firingAngle + Math.PI;
-			this.renderable.setCurrentAnimation("left");
-			this.matrixIsSet = true;
-		}
-
-		else{
-			this.renderable.setCurrentAnimation("right");
-			this.matrixIsSet = false;
-		}
-		
-	},
-	
-	// Adds a laser to the game using the current firing angle and pre-defined speed.
+	// Adds a lightning animation to the game using the current firing angle and pre-defined speed.
 	shoot: function(){
 		me.audio.play("electricShock");
 		var x, y, speed, angle;
@@ -129,22 +104,6 @@ game.LightningTower = me.Entity.extend({
 		speed = this.laserSpeed;
 		angle = this.firingAngle;
 		me.game.world.addChild(me.pool.pull("lightning", x, y, speed, angle));	
-	},
-	
-	// Rotates the image using the current firing angle. If the matrix is not set, rotates couter-clockwise.
-	setMatrix: function(){
-		var cosTheta = Math.cos(this.firingAngle);
-		var sinTheta = Math.sin(this.firingAngle);
-		if (this.matrixIsSet){
-			sinTheta = -1 * sinTheta;
-			this.matrixIsSet = false;
-		}
-		
-		else{
-			this.matrixIsSet = true;	
-		}
-		
-		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
 	},	
 	
 	// Simple function to return the distance from the turret to a given x and y.

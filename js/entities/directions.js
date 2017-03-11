@@ -2,6 +2,19 @@ var TILE_WIDTH = 32;
 var TILE_HEIGHT = 32;
 
 function getDirection(x, y, level){	
+	// Handle situations where a collision pushes the enemies off the screen.
+	if (y < 0)
+		y = 0;
+	
+	if (y > 19 * TILE_HEIGHT)
+		y = 19 * TILE_HEIGHT;
+	
+	if (x < 0)
+		x = 0;
+	
+	if (x > 29 * TILE_WIDTH)
+		x = 29 * TILE_WIDTH;
+	
 	var direction;
 	
 	switch(level){
