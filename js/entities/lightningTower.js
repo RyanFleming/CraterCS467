@@ -24,7 +24,7 @@ game.LightningTower = me.Entity.extend({
 	  
 	  this.renderable.addAnimation("right", [0, 1, 2, 3, 4], 2);	  
    	  this.renderable.setCurrentAnimation("right");
-	  this.counter = 0;
+	  this.counter = this.coolDown;
   },
 	
 	update: function (dt) {
