@@ -6,13 +6,12 @@ function getDirection(x, y, level){
 	if (y < 0)
 		y = 0;
 	
-	if (y > 19 * TILE_HEIGHT)
+	else if (y > 19 * TILE_HEIGHT)
 		y = 19 * TILE_HEIGHT;
 	
 	if (x < 0)
 		x = 0;
-	
-	if (x > 29 * TILE_WIDTH)
+	else if (x > 29 * TILE_WIDTH)
 		x = 29 * TILE_WIDTH;
 	
 	var direction;
@@ -126,7 +125,7 @@ function getDirection(x, y, level){
 
 
 
-return direction[Math.floor(parseFloat((y + 0.5) / TILE_HEIGHT))][Math.floor(parseFloat((x + 0.5) / TILE_WIDTH))];	
+return direction[Math.floor((y + 0.5) / TILE_HEIGHT)][Math.floor((x + 0.5) / TILE_WIDTH)];	
 };
 
 /*

@@ -67,6 +67,7 @@ var game = {
         me.pool.register("Enemy", game.Enemy);
         me.pool.register("Enemy2", game.Enemy2);
         me.pool.register("Enemy3", game.Enemy3);
+		me.pool.register("Enemy4", game.Enemy4);		
 
         me.pool.register("peanut", game.Peanut);
         me.pool.register("lightning", game.Lightning);

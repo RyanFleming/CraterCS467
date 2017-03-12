@@ -1,16 +1,16 @@
-game.Enemy3 = me.Entity.extend({
+game.Enemy4 = me.Entity.extend({
 	init: function (x, y) {
 		this._super(me.Entity, "init", [x, y, {
-			image : "shopper3",
+			image : "family",
 			width : 64,
 			height : 64
 		}]);
 
-		this.speed = 40;
+		this.speed = 25;
 		this.x = x;
 		this.y = y;		
-		this.health = 28;
-		this.fireCodeValue = 1;
+		this.health = 32;
+		this.fireCodeValue = 3;
 		this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
 		this.alreadyHit = [];
 
@@ -83,8 +83,8 @@ game.Enemy3 = me.Entity.extend({
 		
 		if (this.counter > this.coolDown ){
 			var direction = getDirection(this.pos.x + TILE_WIDTH / 2, this.pos.y + TILE_HEIGHT / 2, game.data.level);
-			this.chooseImage(direction);
-		
+			this.chooseImage(direction);			
+
 			switch (direction){
 
 				case 'SE':
@@ -245,6 +245,6 @@ game.Enemy3 = me.Entity.extend({
 			// Set the target array so the turrets choose a new target.
 			targetArray[this.number].isAlive = false;
 			me.game.world.removeChild(this);
-		}
+		}		
 	}
 });
