@@ -75,6 +75,7 @@ game.PlayScreen = me.ScreenObject.extend({
             console.log("level 4 loaded");
             console.log(game.data.level);
             targetArray = [];
+            enemyManager4();
 
         }
 
