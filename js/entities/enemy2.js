@@ -8,7 +8,7 @@ game.Enemy2 = me.Entity.extend({
 
 		this.speed = 30;
 		this.x = x;
-		this.y = y;		
+		this.y = y;
 		this.health = 64;
 		this.fireCodeValue = 1;
 		this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
@@ -33,7 +33,7 @@ game.Enemy2 = me.Entity.extend({
 		targetArray.push({x: this.x, y: this.y, isAlive: true});
 		this.coolDown = 169;
 		this.counter = this.coolDown;
-		
+
 		console.log("x: " + this.x + " y: " + this.y + " length: " + targetArray.length);
 	},
 
@@ -80,10 +80,10 @@ game.Enemy2 = me.Entity.extend({
 	update: function (dt) {
 		this._super(me.Entity, "update", [dt]);
 		this.counter++;
-		
+
 		if (this.counter > this.coolDown ){
 			var direction = getDirection(this.pos.x + TILE_WIDTH / 2, this.pos.y + TILE_HEIGHT / 2, game.data.level);
-			this.chooseImage(direction);			
+			this.chooseImage(direction);
 
 			switch (direction){
 
@@ -126,51 +126,51 @@ game.Enemy2 = me.Entity.extend({
 			targetArray[this.number].x = this.pos.x + TILE_WIDTH / 2;
 			targetArray[this.number].y = this.pos.y + TILE_HEIGHT / 2;
 		}
-		
+
 		// Falling animation
 		else{
 			if (this.counter > 12 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall7");
-			
+
 			else if (this.counter > 11 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall6");
-			
+
 			else if (this.counter > 10 * this.coolDown / 13)
-				this.renderable.setCurrentAnimation("fall0");				
-			
+				this.renderable.setCurrentAnimation("fall0");
+
 			else if (this.counter > 9 * this.coolDown / 13)
-				this.renderable.setCurrentAnimation("fall1");				
-			
+				this.renderable.setCurrentAnimation("fall1");
+
 			else if (this.counter > 8 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall2");
-			
+
 			else if (this.counter > 7 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall3");
-			
+
 			else if (this.counter > 6 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall4");
-			
+
 			else if (this.counter > 5 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall5");
-			
+
 			else if (this.counter > 4 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall4");
-			
+
 			else if (this.counter > 3 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall3");
-			
+
 			else if (this.counter > 2 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall2");
-			
+
 			else if (this.counter > this.coolDown / 13)
-				this.renderable.setCurrentAnimation("fall1");				
-				
+				this.renderable.setCurrentAnimation("fall1");
+
 		}
 
 		//collison check
 		me.collision.check(this);
 		if (this.health <= 0)	{
-			game.data.gold += 3;
+			game.data.gold += 9;
 			game.data.enemyCount -= 1;
 			// remove it
 			me.game.world.removeChild(this);
@@ -190,7 +190,7 @@ game.Enemy2 = me.Entity.extend({
 			// other.projectileID = 1; Lightning.
 			// other.projectileID = 2; Pepper spray.
 			// other.projectileID = 3; Blank.
-			
+
 			// Peanut.
 			if (other.projectileID == 0){
 				me.audio.play("snowBallHit");
@@ -220,16 +220,16 @@ game.Enemy2 = me.Entity.extend({
 					}
 				}
 			}
-			
+
 			// Blank.
 			else if (other.projectileID == 3){
-				me.audio.play("bonk");	
+				me.audio.play("bonk");
 				this.renderable.setCurrentAnimation("fall0");
 				this.health -= other.damage;
 				this.counter = 0;
 			}
 
-			// Other projectiles.			
+			// Other projectiles.
 			else{
 				this.health -= other.damage;
 			}
