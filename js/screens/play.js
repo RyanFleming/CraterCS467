@@ -55,7 +55,7 @@ game.PlayScreen = me.ScreenObject.extend({
             // reset the score
             game.data.health = 20;
             game.data.gold = 300;
-            game.data.enemyCount = 13;
+            game.data.enemyCount = 272;
             console.log("level 3 loaded");
             console.log(game.data.level);
             targetArray = [];
@@ -71,7 +71,7 @@ game.PlayScreen = me.ScreenObject.extend({
             // reset the score
             game.data.health = 20;
             game.data.gold = 680;
-            game.data.enemyCount = 13;
+            game.data.enemyCount = 206;
             console.log("level 4 loaded");
             console.log(game.data.level);
             targetArray = [];
