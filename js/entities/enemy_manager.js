@@ -10,16 +10,16 @@ var waveOneNine;
 var waveOneTen;
 
 function enemyManager(){
-	waveOneOne = setTimeout(waveOne, 0, true);
-	waveOneTwo = setTimeout(waveOne, 25000, true);
-	waveOneThree = setTimeout(waveTwo, 50000, true);
-	waveOneFour = setTimeout(waveTwo, 75000, true);
-	waveOneFive = setTimeout(waveThree, 100000, true);
-	waveOneSix = setTimeout(waveThree, 125000, true);
-	waveOneSeven = setTimeout(waveFour, 150000, true);
-	waveOneEight = setTimeout(waveFive, 182000, true);
-	waveOneNine = setTimeout(waveSix, 214000, true);
-	waveOneTen = setTimeout(waveSeven, 246000, true);
+	waveOneOne = setTimeout(waveOne, 15000, true);
+	waveOneTwo = setTimeout(waveOne, 40000, true);
+	waveOneThree = setTimeout(waveTwo, 65000, true);
+	waveOneFour = setTimeout(waveTwo, 90000, true);
+	waveOneFive = setTimeout(waveThree, 115000, true);
+	waveOneSix = setTimeout(waveThree, 140000, true);
+	waveOneSeven = setTimeout(waveFour, 165000, true);
+	waveOneEight = setTimeout(waveFive, 197000, true);
+	waveOneNine = setTimeout(waveSix, 229000, true);
+	waveOneTen = setTimeout(waveSeven, 261000, true);
 
 };
 
@@ -37,42 +37,42 @@ function enemyManagerStop(){
 }
 
 function enemyManager2(){
-	waveOneOne = setTimeout(waveOne2, 0, true);
-	waveOneTwo = setTimeout(waveOne2, 22000, true);
-	waveOneThree = setTimeout(waveTwo2, 44000, true);
-	waveOneFour = setTimeout(waveTwo2, 66000, true);
-	waveOneFive = setTimeout(waveThree2, 88000, true);
-	waveOneSix = setTimeout(waveThree2, 110000, true);
-	waveOneSeven = setTimeout(waveFour2, 125000, true);
-	waveOneEight = setTimeout(waveFive2, 140000, true);
-	waveOneNine = setTimeout(waveSix2, 155000, true);
-	waveOneTen = setTimeout(waveSeven2, 170000, true);
+	waveOneOne = setTimeout(waveOne2, 15000, true);
+	waveOneTwo = setTimeout(waveOne2, 37000, true);
+	waveOneThree = setTimeout(waveTwo2, 59000, true);
+	waveOneFour = setTimeout(waveTwo2, 81000, true);
+	waveOneFive = setTimeout(waveThree2, 103000, true);
+	waveOneSix = setTimeout(waveThree2, 125000, true);
+	waveOneSeven = setTimeout(waveFour2, 140000, true);
+	waveOneEight = setTimeout(waveFive2, 155000, true);
+	waveOneNine = setTimeout(waveSix2, 170000, true);
+	waveOneTen = setTimeout(waveSeven2, 185000, true);
 };
 
 function enemyManager3(){
-	waveOneOne = setTimeout(waveOne3, 0, true);
-	waveOneTwo = setTimeout(waveTwo3, 21000, true);
-	waveOneThree = setTimeout(waveThree3, 60000, true);
-	waveOneFour = setTimeout(waveFour3, 75000, true);
-	waveOneFive = setTimeout(waveFive3, 93000, true);
-	waveOneSix = setTimeout(waveSix3, 111000, true);
-	waveOneSeven = setTimeout(waveSeven3, 136000, true);
-	waveOneEight = setTimeout(waveSeven3, 154000, true);
-	waveOneNine = setTimeout(waveEight3, 172000, true);
-	waveOneTen = setTimeout(waveNine3, 197000, true);
+	waveOneOne = setTimeout(waveOne3, 15000, true);
+	waveOneTwo = setTimeout(waveTwo3, 36000, true);
+	waveOneThree = setTimeout(waveThree3, 75000, true);
+	waveOneFour = setTimeout(waveFour3, 90000, true);
+	waveOneFive = setTimeout(waveFive3, 108000, true);
+	waveOneSix = setTimeout(waveSix3, 126000, true);
+	waveOneSeven = setTimeout(waveSeven3, 151000, true);
+	waveOneEight = setTimeout(waveSeven3, 169000, true);
+	waveOneNine = setTimeout(waveEight3, 187000, true);
+	waveOneTen = setTimeout(waveNine3, 212000, true);
 };
 
 function enemyManager4(){
-	waveOneOne = setTimeout(waveOne4, 0, true);
-	waveOneTwo = setTimeout(waveTwo4, 21000, true);
-	waveOneThree = setTimeout(waveThree4, 60000, true);
-	waveOneFour = setTimeout(waveFour4, 75000, true);
-	waveOneFive = setTimeout(waveFive4, 93000, true);
-	waveOneSix = setTimeout(waveSix4, 111000, true);
-	waveOneSeven = setTimeout(waveSeven4, 136000, true);
-	waveOneEight = setTimeout(waveEight4, 154000, true);
-	waveOneNine = setTimeout(waveNine4, 172000, true);
-	waveOneTen = setTimeout(waveTen4, 197000, true);
+	waveOneOne = setTimeout(waveOne4, 15000, true);
+	waveOneTwo = setTimeout(waveTwo4, 36000, true);
+	waveOneThree = setTimeout(waveThree4, 75000, true);
+	waveOneFour = setTimeout(waveFour4, 90000, true);
+	waveOneFive = setTimeout(waveFive4, 108000, true);
+	waveOneSix = setTimeout(waveSix4, 126000, true);
+	waveOneSeven = setTimeout(waveSeven4, 151000, true);
+	waveOneEight = setTimeout(waveEight4, 169000, true);
+	waveOneNine = setTimeout(waveNine4, 187000, true);
+	waveOneTen = setTimeout(waveTen4, 212000, true);
 };
 
 function waveOne(){

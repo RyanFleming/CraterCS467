@@ -33,6 +33,7 @@ game.Enemy2 = me.Entity.extend({
 		targetArray.push({x: this.x, y: this.y, isAlive: true});
 		this.coolDown = 169;
 		this.counter = this.coolDown;
+		this.inside = false;
 
 		console.log("x: " + this.x + " y: " + this.y + " length: " + targetArray.length);
 	},
@@ -237,13 +238,17 @@ game.Enemy2 = me.Entity.extend({
 
 		// Enemy reaches the store.
 		else if (other.body.collisionType === me.collision.types.COLLECTABLE_OBJECT){
-			// play a "coin collected" sound
-			me.audio.play("cling");
-			game.data.enemyCount -= 1;
-			game.data.health -= this.fireCodeValue;
-			// Set the target array so the turrets choose a new target.
-			targetArray[this.number].isAlive = false;
-			me.game.world.removeChild(this);
+			if (this.inside == false) {
+				me.game.world.removeChild(this);
+				// play a "coin collected" sound
+				me.audio.play("cling");
+				game.data.enemyCount -= 1;
+				game.data.health -= this.fireCodeValue;
+				// Set the target array so the turrets choose a new target.
+				targetArray[this.number].isAlive = false;
+				this.inside = true;
+			}
+
 		}
 	}
 });
