@@ -41,7 +41,7 @@ game.CoinEntity = me.CollectableEntity.extend({
     }
 });
 
-game.BuildEntity = me.Entity.extend({
+/*game.BuildEntity = me.Entity.extend({
     // extending the init function is not mandatory
     // unless you need to add some extra initialization
     init: function (x, y, settings) {
@@ -54,9 +54,13 @@ game.BuildEntity = me.Entity.extend({
        this.alreadyMade = false;
         console.log(this.alreadyMade);
 
-        me.input.registerPointerEvent('pointerdown', this, this.pointerDown.bind(this));
+        //me.input.registerPointerEvent('pointerdown', this, this.pointerDown.bind(this));
         this.body.setCollisionMask(me.collision.types.NO_OBJECT)
 
+    },
+
+    onActivateEvent : function () {
+        me.input.registerPointerEvent('pointerdown', this, this.pointerDown.bind(this));
     },
 
     update : function (time) {
@@ -76,4 +80,37 @@ game.BuildEntity = me.Entity.extend({
         return false;
     }
 
+});*/
+
+game.BuildEntity = me.GUI_Object.extend({
+    init:function (x, y)
+    {
+        var settings = {}
+        settings.image = "button";
+        settings.framewidth = 32;
+        settings.frameheight = 32;
+        // super constructor
+        this._super(me.GUI_Object, "init", [x, y, settings]);
+        // define the object z order
+        this.pos.z = 4;
+        this.alreadyMade = false;
+    },
+
+    // output something in the console
+    // when the object is clicked
+    onClick:function (event)
+    {
+        console.log("clicked!");
+        // do something
+        if (game.data.gold >= 70  && this.alreadyMade == false) {
+            me.game.world.addChild(me.pool.pull("turret", this.pos.x, this.pos.y))
+            game.data.gold -= 70;
+            this.alreadyMade = true;
+            console.log(this.alreadyMade);
+        }
+        // don't propagate the event
+        return false;
+    }
 });
+
+
