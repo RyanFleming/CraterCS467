@@ -6,6 +6,8 @@ game.PlayScreen = me.ScreenObject.extend({
      */
     onResetEvent : function () {
         // play the audio track
+        // register on the 'pointerdown' event
+
 
         if (game.data.level == 1) {
             me.audio.playTrack("dst-inertexponent");
@@ -71,7 +73,7 @@ game.PlayScreen = me.ScreenObject.extend({
             // reset the score
             game.data.health = 20;
             game.data.gold = 680;
-            game.data.enemyCount = 206;
+            game.data.enemyCount = 207;
             console.log("level 4 loaded");
             console.log(game.data.level);
             targetArray = [];
