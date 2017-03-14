@@ -144,9 +144,9 @@ game.Turret = me.Entity.extend({
 		else{
 			this.matrixIsSet = true;
 		}
-		
+
 		// Remove lines 4351 through 4355 in melonJS.js or the next line will throw errors.
-		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0)); 
+		this.renderable.transform(this.matrix.setTransform(cosTheta, sinTheta, -1 * sinTheta, cosTheta, 0, 0));
 	},
 
 	// Simple function to return the distance from the turret to a given x and y.

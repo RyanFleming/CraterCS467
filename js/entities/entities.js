@@ -86,7 +86,7 @@ game.BuildEntity = me.GUI_Object.extend({
     init:function (x, y)
     {
         var settings = {}
-        settings.image = "button";
+        settings.image = "alpha";
         settings.framewidth = 32;
         settings.frameheight = 32;
         // super constructor
