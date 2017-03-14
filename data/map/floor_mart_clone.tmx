@@ -52,7 +52,7 @@
 </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="7" name="CoinEntity" x="445" y="-15" width="79" height="25"/>
+  <object id="7" name="CoinEntity" x="448" y="34" width="96" height="25"/>
   <object id="8" name="BuildEntity" x="353" y="512" width="30" height="30"/>
   <object id="9" name="BuildEntity" x="641" y="510" width="30" height="30"/>
   <object id="10" name="BuildEntity" x="320" y="608" width="30" height="30"/>
