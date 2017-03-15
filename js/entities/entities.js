@@ -66,11 +66,11 @@ game.BuildEntity = me.GUI_Object.extend({
                 game.data.gold -= 70;
             }
             if (game.data.towerSelection == 3 && game.data.gold >= 100) {
-                me.game.world.addChild(me.pool.pull("lightningTower", this.pos.x, this.pos.y))
+                me.game.world.addChild(me.pool.pull("lightningTower", this.pos.x + 7, this.pos.y - 3))
                 game.data.gold -= 100;
             }
             if (game.data.towerSelection == 4 && game.data.gold >= 125) {
-                me.game.world.addChild(me.pool.pull("sprayCan", this.pos.x, this.pos.y))
+                me.game.world.addChild(me.pool.pull("sprayCan", this.pos.x + 10, this.pos.y))
                 game.data.gold -= 125;
             }
             this.alreadyMade = true;
