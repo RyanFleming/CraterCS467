@@ -57,19 +57,19 @@ game.BuildEntity = me.GUI_Object.extend({
         console.log("clicked!");
         // do something
         if (game.data.gold >= 70  && this.alreadyMade == false) {
-            if (game.data.towerSelection == 1) {
+            if (game.data.towerSelection == 1 && game.data.gold >= 70) {
                 me.game.world.addChild(me.pool.pull("turret", this.pos.x, this.pos.y))
                 game.data.gold -= 70;
             }
-            if (game.data.towerSelection == 2) {
+            if (game.data.towerSelection == 2 && game.data.gold >= 70) {
                 me.game.world.addChild(me.pool.pull("barricade", this.pos.x, this.pos.y))
                 game.data.gold -= 70;
             }
-            if (game.data.towerSelection == 3) {
+            if (game.data.towerSelection == 3 && game.data.gold >= 100) {
                 me.game.world.addChild(me.pool.pull("lightningTower", this.pos.x, this.pos.y))
                 game.data.gold -= 100;
             }
-            if (game.data.towerSelection == 4) {
+            if (game.data.towerSelection == 4 && game.data.gold >= 125) {
                 me.game.world.addChild(me.pool.pull("sprayCan", this.pos.x, this.pos.y))
                 game.data.gold -= 125;
             }
