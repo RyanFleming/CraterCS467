@@ -170,7 +170,7 @@ game.Enemy = me.Entity.extend({
 
 		//collison check
 		me.collision.check(this);
-		if (this.health <= 0)	{
+		if (this.health <= 0 && this.inside == false)	{
 			game.data.gold += 3;
 			game.data.enemyCount -= 1;
 			// remove it
@@ -178,6 +178,7 @@ game.Enemy = me.Entity.extend({
 			// Set the target array so the turrets choose a new target.
 			targetArray[this.number].isAlive = false;
 			//this.body.setCollisionMask(me.collision.types.NO_OBJECT);
+			this.inside = true;
 		}
 		return true;
 	},
