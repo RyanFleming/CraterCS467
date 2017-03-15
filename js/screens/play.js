@@ -84,6 +84,10 @@ game.PlayScreen = me.ScreenObject.extend({
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
+        me.input.bindKey(me.input.KEY.LEFT,  "left");
+        me.input.bindKey(me.input.KEY.RIGHT,  "right");
+        me.input.bindKey(me.input.KEY.DOWN,  "down");
+        me.input.bindKey(me.input.KEY.UP,  "up");
 
     },
 
@@ -100,6 +104,10 @@ game.PlayScreen = me.ScreenObject.extend({
         me.audio.stopTrack();
         targetArray = [];
         game.data.level += 1;
+        me.input.unbindKey(me.input.KEY.LEFT);
+        me.input.unbindKey(me.input.KEY.RIGHT);
+        me.input.unbindKey(me.input.KEY.DOWN);
+        me.input.unbindKey(me.input.KEY.UP);
     },
 
 });
