@@ -30,7 +30,8 @@ game.Peanut = me.Entity.extend({
             this.pos.x -= (Math.cos(this.angle) * this.speed * time / 1000);
 
 
-        //me.collision.check(this);
+        if (Math.abs(this.pos.x - this.x) > 192 || Math.abs(this.pos.y - this.y) > 192)
+            me.game.world.removeChild(this);
 
 
         return true;

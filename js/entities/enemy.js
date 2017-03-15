@@ -34,7 +34,8 @@ game.Enemy = me.Entity.extend({
 		this.coolDown = 169;
 		this.counter = this.coolDown;
 		this.inside = false;
-		console.log("x: " + this.x + " y: " + this.y + " length: " + targetArray.length);
+		this.maxX = me.game.viewport.width - this.width;
+		this.maxY = me.game.viewport.height - this.height;
 	},
 
 	chooseImage: function (direction) {
@@ -180,6 +181,9 @@ game.Enemy = me.Entity.extend({
 			//this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 			this.inside = true;
 		}
+		
+		this.pos.x = this.pos.x.clamp(0, this.maxX);
+		this.pos.y = this.pos.y.clamp(0, this.maxY);
 		return true;
 	},
 
