@@ -47,6 +47,7 @@ game.BuildEntity = me.GUI_Object.extend({
         // define the object z order
         this.pos.z = 4;
         this.alreadyMade = false;
+        this.selection = 0;
     },
 
     // output something in the console
@@ -56,14 +57,43 @@ game.BuildEntity = me.GUI_Object.extend({
         console.log("clicked!");
         // do something
         if (game.data.gold >= 70  && this.alreadyMade == false) {
-            me.game.world.addChild(me.pool.pull("turret", this.pos.x, this.pos.y))
-            game.data.gold -= 70;
+            if (game.data.towerSelection == 1) {
+                me.game.world.addChild(me.pool.pull("turret", this.pos.x, this.pos.y))
+                game.data.gold -= 70;
+            }
+            if (game.data.towerSelection == 2) {
+                me.game.world.addChild(me.pool.pull("barricade", this.pos.x, this.pos.y))
+                game.data.gold -= 70;
+            }
+            if (game.data.towerSelection == 3) {
+                me.game.world.addChild(me.pool.pull("lightningTower", this.pos.x, this.pos.y))
+                game.data.gold -= 100;
+            }
+            if (game.data.towerSelection == 4) {
+                me.game.world.addChild(me.pool.pull("sprayCan", this.pos.x, this.pos.y))
+                game.data.gold -= 125;
+            }
             this.alreadyMade = true;
             console.log(this.alreadyMade);
         }
         // don't propagate the event
         return false;
-    }
-});
+    },
 
+    update : function (time) {
+        if (me.input.isKeyPressed('left')) {
+            game.data.towerSelection = 1;
+        }
+        if (me.input.isKeyPressed('right')) {
+            game.data.towerSelection = 2;
+        }
+        if (me.input.isKeyPressed('up')) {
+            game.data.towerSelection = 3;
+        }
+        if (me.input.isKeyPressed('down')) {
+            game.data.towerSelection = 4;
+        }
+        return true;
+    },
+});
 
