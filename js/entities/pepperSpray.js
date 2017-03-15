@@ -12,7 +12,7 @@ game.PepperSpray = me.Entity.extend({
         this.y = y;
         this.speed = speed;
         this.angle = angle;
-        this.damage = 60;
+        this.damage = 30;
         this.renderable.scale(2, 2);
         this.scaleFactor = 3;
         //var frame = ~~(Math.random() * 5);

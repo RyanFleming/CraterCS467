@@ -6,7 +6,7 @@ game.Enemy3 = me.Entity.extend({
             height : 64
         }]);
 
-        this.speed = 40;
+        this.speed = 35;
         this.x = x;
         this.y = y;
         this.health = 28;

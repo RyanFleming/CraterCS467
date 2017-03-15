@@ -9,7 +9,7 @@ game.Enemy = me.Entity.extend({
 		this.speed = 20;
 		this.x = x;
 		this.y = y;
-		this.health = 16;
+		this.health = 24;
 		this.fireCodeValue = 1;
 		this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
 		this.alreadyHit = [];
