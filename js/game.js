@@ -9,7 +9,8 @@ var game = {
         health: 20,
         gold: 0,
         enemyCount: 0,
-        level: 1
+        level: 1,
+        towerSelection: 1
     },
 
     // Run on page load.
