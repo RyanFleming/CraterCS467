@@ -11,7 +11,7 @@ game.Blank = me.Entity.extend({
         this.y = y;
         this.speed = speed;
         this.angle = angle;
-        this.damage = 18;
+        this.damage = 9;
         this.renderable.scale(2, 2);
         this.scaleFactor = 8;
 

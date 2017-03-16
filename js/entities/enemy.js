@@ -11,6 +11,7 @@ game.Enemy = me.Entity.extend({
 		this.y = y;
 		this.health = 16;
 		this.fireCodeValue = 1;
+		this.damageFactor = 1;
 		this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
 		this.alreadyHit = [];
 
@@ -85,6 +86,7 @@ game.Enemy = me.Entity.extend({
 		if (this.counter > this.coolDown ){
 			var direction = getDirection(this.pos.x + TILE_WIDTH / 2, this.pos.y + TILE_HEIGHT / 2, game.data.level);
 			this.chooseImage(direction);
+			this.damageFactor = 1;
 
 			switch (direction){
 
@@ -131,6 +133,7 @@ game.Enemy = me.Entity.extend({
 
 		// Falling animation
 		else{
+			this.damageFactor = 4;
 			if (this.counter > 12 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall7");
 
@@ -200,14 +203,14 @@ game.Enemy = me.Entity.extend({
 			// Peanut.
 			if (other.projectileID == 0){
 				me.audio.play("snowBallHit");
-				this.health -= other.damage;
+				this.health -= (other.damage * this.damageFactor);
 			}
 
 			// Pepper spray.
 			else if (other.projectileID == 2){
 				// If the array is empty take damage and push to the array.
 				if (this.alreadyHit.length == 0){
-					this.health -= other.damage;
+					this.health -= (other.damage * this.damageFactor);
 					this.alreadyHit.push(other.id);
 				}
 
@@ -220,7 +223,7 @@ game.Enemy = me.Entity.extend({
 						}
 						// Not hit yet.
 						else{
-							this.health -= other.damage;
+							this.health -= (other.damage * this.damageFactor);
 							this.alreadyHit.push(other.id);
 						}
 					}
@@ -237,7 +240,7 @@ game.Enemy = me.Entity.extend({
 
 			// Other projectiles.
 			else{
-				this.health -= other.damage;
+				this.health -= (other.damage * this.damageFactor);
 			}
 		}
 

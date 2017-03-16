@@ -11,6 +11,7 @@ game.Enemy2 = me.Entity.extend({
 		this.y = y;
 		this.health = 64;
 		this.fireCodeValue = 1;
+		this.damageFactor = 1;
 		this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
 		this.alreadyHit = [];
 
@@ -85,6 +86,7 @@ game.Enemy2 = me.Entity.extend({
 		if (this.counter > this.coolDown ){
 			var direction = getDirection(this.pos.x + TILE_WIDTH / 2, this.pos.y + TILE_HEIGHT / 2, game.data.level);
 			this.chooseImage(direction);
+			this.damageFactor = 1;
 
 			switch (direction){
 
@@ -123,6 +125,7 @@ game.Enemy2 = me.Entity.extend({
 				default: // E
 					this.pos.x += 2 * this.speed * dt / 1000;
 					break;
+
 			}
 			targetArray[this.number].x = this.pos.x + TILE_WIDTH / 2;
 			targetArray[this.number].y = this.pos.y + TILE_HEIGHT / 2;
@@ -130,6 +133,7 @@ game.Enemy2 = me.Entity.extend({
 
 		// Falling animation
 		else{
+			this.damageFactor = 4;
 			if (this.counter > 12 * this.coolDown / 13)
 				this.renderable.setCurrentAnimation("fall7");
 
@@ -171,7 +175,7 @@ game.Enemy2 = me.Entity.extend({
 		//collison check
 		me.collision.check(this);
 		if (this.health <= 0 && this.inside == false)	{
-			game.data.gold += 9;
+			game.data.gold += 3;
 			game.data.enemyCount -= 1;
 			// remove it
 			me.game.world.removeChild(this);
@@ -199,14 +203,14 @@ game.Enemy2 = me.Entity.extend({
 			// Peanut.
 			if (other.projectileID == 0){
 				me.audio.play("snowBallHit");
-				this.health -= other.damage;
+				this.health -= (other.damage * this.damageFactor);
 			}
 
 			// Pepper spray.
 			else if (other.projectileID == 2){
 				// If the array is empty take damage and push to the array.
 				if (this.alreadyHit.length == 0){
-					this.health -= other.damage;
+					this.health -= (other.damage * this.damageFactor);
 					this.alreadyHit.push(other.id);
 				}
 
@@ -219,7 +223,7 @@ game.Enemy2 = me.Entity.extend({
 						}
 						// Not hit yet.
 						else{
-							this.health -= other.damage;
+							this.health -= (other.damage * this.damageFactor);
 							this.alreadyHit.push(other.id);
 						}
 					}
@@ -236,12 +240,12 @@ game.Enemy2 = me.Entity.extend({
 
 			// Other projectiles.
 			else{
-				this.health -= other.damage;
+				this.health -= (other.damage * this.damageFactor);
 			}
 		}
 
 		// Enemy reaches the store.
-		else if (other.body.collisionType === me.collision.types.COLLECTABLE_OBJECT){
+		else if (other.body.collisionType === me.collision.types.COLLECTABLE_OBJECT) {
 			if (this.inside == false) {
 				me.game.world.removeChild(this);
 				// play a "coin collected" sound
@@ -252,7 +256,6 @@ game.Enemy2 = me.Entity.extend({
 				targetArray[this.number].isAlive = false;
 				this.inside = true;
 			}
-
 		}
 	}
 });
