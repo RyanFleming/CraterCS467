@@ -107,7 +107,9 @@ game.PlayScreen = me.ScreenObject.extend({
         // stop the current audio track
         me.audio.stopTrack();
         targetArray = [];
-        game.data.level += 1;
+        if (game.data.health > 0) {
+            game.data.level += 1;
+        }
         me.input.unbindKey(me.input.KEY.LEFT);
         me.input.unbindKey(me.input.KEY.RIGHT);
         me.input.unbindKey(me.input.KEY.DOWN);
