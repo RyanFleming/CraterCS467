@@ -82,6 +82,17 @@ var game = {
         me.pool.register("sprayCan", game.SprayCan);
         me.pool.register("barricade", game.Barricade);
 
+        me.event.subscribe(me.event.KEYDOWN, function (action, keyCode /*, edge */) {
+
+            // toggle fullscreen on/off
+            if (keyCode === me.input.KEY.F) {
+                if (!me.device.isFullscreen) {
+                    me.device.requestFullscreen();
+                } else {
+                    me.device.exitFullscreen();
+                }
+            }
+        });
 
         // display the menu title
         me.state.change(me.state.MENU);
