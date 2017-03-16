@@ -92,6 +92,11 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.RIGHT,  "right");
         me.input.bindKey(me.input.KEY.DOWN,  "down");
         me.input.bindKey(me.input.KEY.UP,  "up");
+		
+		me.input.bindKey(me.input.KEY.NUM1, "left");
+		me.input.bindKey(me.input.KEY.NUM2, "up");
+		me.input.bindKey(me.input.KEY.NUM3, "down");
+		me.input.bindKey(me.input.KEY.NUM4, "right");
 
     },
 
@@ -114,6 +119,11 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.unbindKey(me.input.KEY.RIGHT);
         me.input.unbindKey(me.input.KEY.DOWN);
         me.input.unbindKey(me.input.KEY.UP);
+		
+		me.input.unbindKey(me.input.KEY.NUM1);
+		me.input.unbindKey(me.input.KEY.NUM2);
+		me.input.unbindKey(me.input.KEY.NUM3);
+		me.input.unbindKey(me.input.KEY.NUM4);
     },
 
 });

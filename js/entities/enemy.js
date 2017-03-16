@@ -34,8 +34,8 @@ game.Enemy = me.Entity.extend({
 		this.coolDown = 169;
 		this.counter = this.coolDown;
 		this.inside = false;
-		this.maxX = me.game.viewport.width - this.width;
-		this.maxY = me.game.viewport.height - this.height;
+		this.maxX = 960 - this.width;
+		this.maxY = 640 - this.height;
 	},
 
 	chooseImage: function (direction) {
