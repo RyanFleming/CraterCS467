@@ -80,6 +80,7 @@ function waveOne(){
 	me.game.world.addChild(me.pool.pull("Enemy", 1*32, 6*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 1*32, 12*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 13*32, 1*32), 3);
+	game.data.wave += 1;
 }
 
 function waveTwo(){
@@ -90,6 +91,7 @@ function waveTwo(){
 	me.game.world.addChild(me.pool.pull("Enemy", 17*32, 1*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 13*32, 19*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 17*32, 19*32), 3);
+	game.data.wave += 1;
 }
 
 
@@ -104,6 +106,7 @@ function waveThree(){
 	me.game.world.addChild(me.pool.pull("Enemy", 2*32, 6*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 2*32, 12*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 18*32, 1*32), 3);
+	game.data.wave += 1;
 }
 
 
@@ -114,7 +117,7 @@ function waveFour(){
 	me.game.world.addChild(me.pool.pull("Enemy", 13*32, 1*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 17*32, 1*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 13*32, 19*32), 3);
-
+	game.data.wave += 1;
 }
 
 
@@ -123,8 +126,7 @@ function waveFive(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 1*32, 6*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 1*32, 12*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 13*32, 1*32), 3);
-
-
+	game.data.wave += 1;
 }
 
 function waveSix(){
@@ -142,6 +144,7 @@ function waveSix(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 1*32, 13*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 14*32, 1*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 14*32, 19*32), 3);
+	game.data.wave += 1;
 }
 
 function waveSeven(){
@@ -161,6 +164,7 @@ function waveSeven(){
 	me.game.world.addChild(me.pool.pull("Enemy", 14*32, 19*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 3*32, 6*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 3*32, 12*32), 3);
+	game.data.wave += 1;
 }
 	
 function waveOne2(){
@@ -184,6 +188,7 @@ function waveOne2(){
 	me.game.world.addChild(me.pool.pull("Enemy", 28*32, 2*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 28*32, 18*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 27*32, 18*32), 3);
+	game.data.wave += 1;
 }
 
 function waveTwo2(){
@@ -211,6 +216,7 @@ function waveTwo2(){
 	me.game.world.addChild(me.pool.pull("Enemy", 25*32, 2*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 26*32, 18*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 25*32, 18*32), 3);
+	game.data.wave += 1;
 }
 
 function waveThree2(){
@@ -230,6 +236,7 @@ function waveThree2(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 14*32, 19*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 13*32, 19*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 12*32, 19*32), 3);
+	game.data.wave += 1;
 }
 
 function waveFour2() {
@@ -239,6 +246,7 @@ function waveFour2() {
 	me.game.world.addChild(me.pool.pull("Enemy3", 27 * 32, 1 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 28 * 32, 1 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 24 * 32, 19 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveFive2(){
@@ -268,6 +276,7 @@ function waveFive2(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 25*32, 18*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 26*32, 17*32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 25*32, 17*32), 3);
+	game.data.wave += 1;
 }
 
 function waveSix2() {
@@ -293,6 +302,7 @@ function waveSix2() {
 	me.game.world.addChild(me.pool.pull("Enemy", 27 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 26 * 32, 2 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 25 * 32, 2 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveSeven2() {
@@ -336,6 +346,7 @@ function waveSeven2() {
 	me.game.world.addChild(me.pool.pull("Enemy3", 26 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 27 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 28 * 32, 19 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveOne3(){
@@ -363,6 +374,7 @@ function waveOne3(){
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 3 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 4 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 5 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveTwo3(){
@@ -376,6 +388,7 @@ function waveTwo3(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 3 * 32, 8 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 3 * 32, 9 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 3 * 32, 10 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveThree3(){
@@ -391,6 +404,7 @@ function waveThree3(){
 	me.game.world.addChild(me.pool.pull("Enemy3", 3 * 32, 10 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 3 * 32, 11 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 3 * 32, 12 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveFour3(){
@@ -434,6 +448,7 @@ function waveFour3(){
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 5 * 32, 1 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 5 * 32, 2 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveFive3(){
@@ -472,6 +487,7 @@ function waveFive3(){
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 14 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 15 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 16 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveSix3(){
@@ -485,6 +501,7 @@ function waveSix3(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 3 * 32, 8 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 3 * 32, 9 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 3 * 32, 10 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveSeven3(){
@@ -525,6 +542,7 @@ function waveSeven3(){
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 16 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 17 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 18 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveEight3(){
@@ -574,6 +592,7 @@ function waveEight3(){
 	me.game.world.addChild(me.pool.pull("Enemy", 5 * 32, 6 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 5 * 32, 7 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 5 * 32, 8 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveNine3(){
@@ -598,6 +617,7 @@ function waveNine3(){
 	me.game.world.addChild(me.pool.pull("Enemy", 3 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 1 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 2 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveOne4(){
@@ -627,6 +647,7 @@ function waveOne4(){
 	me.game.world.addChild(me.pool.pull("Enemy", 23 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 24 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 25 * 32, 18 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveTwo4(){
@@ -658,6 +679,7 @@ function waveTwo4(){
 	me.game.world.addChild(me.pool.pull("Enemy", 25 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 25 * 32, 17 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 6 * 32, 17 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveThree4(){
@@ -686,6 +708,7 @@ function waveThree4(){
 	me.game.world.addChild(me.pool.pull("Enemy", 23 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 24 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 25 * 32, 18 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveFour4(){
@@ -739,6 +762,7 @@ function waveFour4(){
 	me.game.world.addChild(me.pool.pull("Enemy", 11 * 32, 17 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 12 * 32, 17 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 13 * 32, 17 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveFive4(){
@@ -771,6 +795,7 @@ function waveFive4(){
 	me.game.world.addChild(me.pool.pull("Enemy", 2 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 3 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy", 4 * 32, 18 * 32), 3);
+	game.data.wave += 1;
 }
 function waveSix4(){
 	me.game.world.addChild(me.pool.pull("Enemy3", 6 * 32, 19 * 32), 3);
@@ -792,6 +817,7 @@ function waveSix4(){
 	me.game.world.addChild(me.pool.pull("Enemy3", 9 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 10 * 32, 18 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy3", 15 * 32, 18 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveSeven4(){
@@ -801,6 +827,7 @@ function waveSeven4(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 9 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 10 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy4", 15 * 32, 19 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveEight4(){
@@ -818,6 +845,7 @@ function waveEight4(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 24 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 25 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 6 * 32, 18 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveNine4(){
@@ -829,9 +857,11 @@ function waveNine4(){
 	me.game.world.addChild(me.pool.pull("Enemy2", 15 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 16 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy2", 17 * 32, 19 * 32), 3);
+	game.data.wave += 1;
 }
 
 function waveTen4(){
 	me.game.world.addChild(me.pool.pull("Enemy4", 6 * 32, 19 * 32), 3);
 	me.game.world.addChild(me.pool.pull("Enemy4", 7 * 32, 19 * 32), 3);
+	game.data.wave += 1;
 }
