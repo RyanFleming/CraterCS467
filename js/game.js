@@ -10,7 +10,8 @@ var game = {
         gold: 0,
         enemyCount: 0,
         level: 1,
-        towerSelection: 1
+        towerSelection: 1,
+        wave: 0
     },
 
     // Run on page load.
