@@ -35,7 +35,7 @@ game.HUD.ScoreItem = me.Renderable.extend( {
         this._super(me.Renderable, 'init', [x, y, 10, 10]);
 
         // create the font object
-        this.font = new me.BitmapFont(me.loader.getBinary('PressStart2P'), me.loader.getImage('PressStart2P'));
+        this.font = new me.BitmapFont(me.loader.getBinary('PressStart2P'), me.loader.getImage('PressStart2P'), 0.5);
 
         // font alignment to right, bottom
         this.font.textAlign = "right";
@@ -46,6 +46,8 @@ game.HUD.ScoreItem = me.Renderable.extend( {
         this.gold = -1;
         this.enemyCount = -1;
         this.towerSelection = -1;
+        this.level = -1;
+        this.wave = -1;
 
     },
 
@@ -55,13 +57,13 @@ game.HUD.ScoreItem = me.Renderable.extend( {
     update : function (dt) {
         // we don't draw anything fancy here, so just
         // return true if the score has been updated
-        if (this.score != game.data.health || this.gold != game.data.gold || this.enemyCount != game.data.enemyCount || this.towerSelection != game.data.towerSelection) {
+        if (this.score != game.data.health || this.gold != game.data.gold || this.enemyCount != game.data.enemyCount || this.towerSelection != game.data.towerSelection || this.level != game.data.level || this.wave != game.data.wave) {
             this.score = game.data.health;
             this.gold = game.data.gold;
             this.enemyCount = game.data.enemyCount;
             this.towerSelection = game.data.towerSelection;
-
-
+            this.level = game.data.level;
+            this.wave = game.data.wave;
             return true;
         }
         return false;
@@ -87,5 +89,7 @@ game.HUD.ScoreItem = me.Renderable.extend( {
         if (game.data.towerSelection == 4){
             this.font.draw (renderer, "Spray Can Tower Active", me.game.viewport.width + this.pos.x, me.game.viewport.height + this.pos.y - 96)
         }
+        this.font.draw (renderer, "Level - " + game.data.level, me.game.viewport.width + this.pos.x, me.game.viewport.height + this.pos.y - 128);
+        this.font.draw (renderer, "Wave " + game.data.wave + " of 10", me.game.viewport.width + this.pos.x - 96, me.game.viewport.height + this.pos.y - 128);
     }
 });
