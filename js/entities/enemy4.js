@@ -6,10 +6,10 @@ game.Enemy4 = me.Entity.extend({
             height : 64
         }]);
 
-        this.speed = 5;
+        this.speed = 15;
         this.x = x;
         this.y = y;
-        this.health = 640;
+        this.health = 480;
         this.fireCodeValue = 3;
         this.body.setCollisionMask(me.collision.types.COLLECTABLE_OBJECT | me.collision.types.PROJECTILE_OBJECT);
         this.alreadyHit = [];
@@ -35,7 +35,7 @@ game.Enemy4 = me.Entity.extend({
         this.counter = this.coolDown;
         this.inside = false;
         this.maxX = me.game.viewport.width - this.width;
-		this.maxY = me.game.viewport.height - this.height;
+        this.maxY = me.game.viewport.height - this.height;
     },
 
     chooseImage: function (direction) {
@@ -181,9 +181,9 @@ game.Enemy4 = me.Entity.extend({
             //this.body.setCollisionMask(me.collision.types.NO_OBJECT);
             this.inside = true;
         }
-		
-		this.pos.x = this.pos.x.clamp(0, this.maxX);
-		this.pos.y = this.pos.y.clamp(0, this.maxY);
+
+        this.pos.x = this.pos.x.clamp(0, this.maxX);
+        this.pos.y = this.pos.y.clamp(0, this.maxY);
         return true;
     },
 
