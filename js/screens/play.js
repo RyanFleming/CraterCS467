@@ -10,7 +10,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
 
         if (game.data.level == 1) {
-            me.audio.playTrack("dst-inertexponent");
+            me.audio.playTrack("gameMusic");
             // load a level
             me.levelDirector.loadLevel("mall_clone");
             /******************************
@@ -35,7 +35,7 @@ game.PlayScreen = me.ScreenObject.extend({
         }
 
         if (game.data.level == 2) {
-            me.audio.playTrack("dst-inertexponent");
+            me.audio.playTrack("gameMusic_2");
             // load a level
             me.levelDirector.loadLevel("bullseye_clone");
 
@@ -52,7 +52,7 @@ game.PlayScreen = me.ScreenObject.extend({
         }
 
         if (game.data.level == 3) {
-            me.audio.playTrack("dst-inertexponent");
+            me.audio.playTrack("gameMusic");
             // load a level
             me.levelDirector.loadLevel("best_buy_clone");
 
@@ -69,7 +69,7 @@ game.PlayScreen = me.ScreenObject.extend({
         }
 
         if (game.data.level == 4) {
-            me.audio.playTrack("dst-inertexponent");
+            me.audio.playTrack("gameMusic_2");
             // load a level
             me.levelDirector.loadLevel("floor_mart_clone");
 

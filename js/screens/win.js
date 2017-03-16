@@ -3,6 +3,9 @@ game.WinScreen = me.ScreenObject.extend({
      * action to perform on state change
      */
     onResetEvent : function () {
+        //play selection music
+        me.audio.playTrack("endCreditMusic");
+
         // title screen
         var backgroundImage = new me.Sprite(0, 0, {
                 image: me.loader.getImage('victoryScreen'),
@@ -50,6 +53,7 @@ game.WinScreen = me.ScreenObject.extend({
             onDestroyEvent : function () {
                 //just in case
                 this.scrollertween.stop();
+                me.audio.stopTrack();
             }
         })), 2);
 

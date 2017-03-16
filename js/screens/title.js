@@ -3,6 +3,9 @@ game.TitleScreen = me.ScreenObject.extend({
      * action to perform on state change
      */
     onResetEvent : function () {
+        //play intro music
+        me.audio.playTrack("introMusic")
+
         // title screen
         var backgroundImage = new me.Sprite(0, 0, {
                 image: me.loader.getImage('titleScreen'),
@@ -26,17 +29,19 @@ game.TitleScreen = me.ScreenObject.extend({
                 this.font = new me.BitmapFont(me.loader.getBinary('PressStart2P'), me.loader.getImage('PressStart2P'));
 
                 // a tween to animate the arrow
-                this.scrollertween = new me.Tween(this).to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
 
-                this.scroller = "THIS IS THE TITLE SCREEN THIS IS THE TITLE SCREEN THIS IS THE TITLE SCREEN";
+                this.scrollertween = new me.Tween(this).to({scrollerpos: -1500 }, 7500).onComplete(this.scrollover.bind(this)).start();
+
+                this.scroller = "                  Stop the customers from entering. Spare no expense. Grant no quarter!";
                 this.scrollerpos = 600;
+
             },
 
             // some callback for the tween objects
             scrollover : function () {
                 // reset to default value
                 this.scrollerpos = 640;
-                this.scrollertween.to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
+                this.scrollertween.to({scrollerpos: -1500 }, 7500).onComplete(this.scrollover.bind(this)).start();
             },
 
             update : function (dt) {
@@ -44,7 +49,7 @@ game.TitleScreen = me.ScreenObject.extend({
             },
 
             draw : function (renderer) {
-                this.font.draw(renderer, "PRESS ENTER TO PLAY", 20, 240);
+                this.font.draw(renderer, "PRESS ENTER TO PLAY", 420, 380);
                 this.font.draw(renderer, this.scroller, this.scrollerpos, 440);
             },
             onDestroyEvent : function () {
@@ -60,7 +65,8 @@ game.TitleScreen = me.ScreenObject.extend({
             if (action === "enter") {
                 // play something on tap / enter
                 // this will unlock audio on mobile devices
-                me.audio.play("cling");
+                me.audio.stopTrack();
+                me.audio.play("bells");
                 me.state.change(me.state.PLAY);
             }
         });

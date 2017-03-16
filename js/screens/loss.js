@@ -3,6 +3,9 @@ game.LossScreen = me.ScreenObject.extend({
      * action to perform on state change
      */
     onResetEvent : function () {
+        //play selection music
+        me.audio.playTrack("endCreditMusic");
+
         // title screen
         var backgroundImage = new me.Sprite(0, 0, {
                 image: me.loader.getImage('gameOverScreen'),
@@ -28,7 +31,7 @@ game.LossScreen = me.ScreenObject.extend({
                 // a tween to animate the arrow
                 this.scrollertween = new me.Tween(this).to({scrollerpos: -2200 }, 10000).onComplete(this.scrollover.bind(this)).start();
 
-                this.scroller = "THIS IS THE LOSS SCREEN THIS IS THE LOSS SCREEN THIS IS THE LOSS SCREEN";
+                this.scroller = "You were unsucessful, but do not disparage.  Try again and better luck this time around";
                 this.scrollerpos = 600;
             },
 
@@ -50,6 +53,7 @@ game.LossScreen = me.ScreenObject.extend({
             onDestroyEvent : function () {
                 //just in case
                 this.scrollertween.stop();
+                me.audio.stopTrack();
             }
         })), 2);
 
