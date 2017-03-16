@@ -7,6 +7,8 @@ game.Peanut = me.Entity.extend({
         }]);
         this.projectileID = 0;
         this.z = 5;
+		this.x = x;
+        this.y = y;
         this.speed = speed;
         this.angle = angle;
         this.damage = 7;
