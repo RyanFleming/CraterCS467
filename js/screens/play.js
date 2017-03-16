@@ -26,6 +26,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.health = 20;
             game.data.gold = 265;
             game.data.enemyCount = 74;
+            game.data.wave = 0;
             console.log("level 1 loaded");
             console.log(game.data.level);
             targetArray = [];
@@ -42,6 +43,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.health = 20;
             game.data.gold = 220;
             game.data.enemyCount = 214;
+            game.data.wave = 0;
             console.log("level 2 loaded");
             console.log(game.data.level);
             targetArray = [];
@@ -58,6 +60,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.health = 20;
             game.data.gold = 300;
             game.data.enemyCount = 272;
+            game.data.wave = 0;
             console.log("level 3 loaded");
             console.log(game.data.level);
             targetArray = [];
@@ -74,6 +77,7 @@ game.PlayScreen = me.ScreenObject.extend({
             game.data.health = 20;
             game.data.gold = 680;
             game.data.enemyCount = 207;
+            game.data.wave = 0;
             console.log("level 4 loaded");
             console.log(game.data.level);
             targetArray = [];
