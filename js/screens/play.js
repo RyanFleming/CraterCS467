@@ -13,14 +13,6 @@ game.PlayScreen = me.ScreenObject.extend({
             me.audio.playTrack("gameMusic");
             // load a level
             me.levelDirector.loadLevel("mall_clone");
-            /******************************
-             Tower Testing
-
-             ******************************
-                //me.game.world.addChild(me.pool.pull("turret", 17 * TILE_WIDTH, 1 * TILE_HEIGHT), 2);
-            me.game.world.addChild(me.pool.pull("sprayCan", 21 * TILE_WIDTH + 10, 6 * TILE_HEIGHT), 2);
-            me.game.world.addChild(me.pool.pull("lightningTower", 21 * TILE_WIDTH + 8, 13 * TILE_HEIGHT), 2);
-            */
 
             // reset the score
             game.data.health = 20;
@@ -92,11 +84,11 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.RIGHT,  "right");
         me.input.bindKey(me.input.KEY.DOWN,  "down");
         me.input.bindKey(me.input.KEY.UP,  "up");
-		
-		me.input.bindKey(me.input.KEY.NUM1, "left");
-		me.input.bindKey(me.input.KEY.NUM2, "up");
-		me.input.bindKey(me.input.KEY.NUM3, "down");
-		me.input.bindKey(me.input.KEY.NUM4, "right");
+
+        me.input.bindKey(me.input.KEY.NUM1, "left");
+        me.input.bindKey(me.input.KEY.NUM2, "up");
+        me.input.bindKey(me.input.KEY.NUM3, "down");
+        me.input.bindKey(me.input.KEY.NUM4, "right");
 
     },
 
@@ -104,7 +96,7 @@ game.PlayScreen = me.ScreenObject.extend({
      * action to perform when leaving this screen (state change)
      */
     onDestroyEvent : function () {
-         enemyManagerStop();
+        enemyManagerStop();
 
 
         // remove the HUD from the game world
@@ -119,12 +111,11 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.unbindKey(me.input.KEY.RIGHT);
         me.input.unbindKey(me.input.KEY.DOWN);
         me.input.unbindKey(me.input.KEY.UP);
-		
-		me.input.unbindKey(me.input.KEY.NUM1);
-		me.input.unbindKey(me.input.KEY.NUM2);
-		me.input.unbindKey(me.input.KEY.NUM3);
-		me.input.unbindKey(me.input.KEY.NUM4);
+
+        me.input.unbindKey(me.input.KEY.NUM1);
+        me.input.unbindKey(me.input.KEY.NUM2);
+        me.input.unbindKey(me.input.KEY.NUM3);
+        me.input.unbindKey(me.input.KEY.NUM4);
     },
 
 });
-
